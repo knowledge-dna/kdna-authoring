@@ -1,0 +1,16 @@
+{
+  "kdna_spec": "0.4",
+  "name": "kdna_authoring",
+  "version": "0.1.0",
+  "status": "experimental",
+  "access": "open",
+  "language": "en",
+  "author": { "name": "KDNA Team", "id": "kdna-team" },
+  "license": { "type": "CC-BY-4.0" },
+  "keywords": ["kdna", "authoring", "meta-cognition", "quality", "interview", "domain creation"],
+  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.",
+  "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
+  "file_count": 6,
+  "created": "2026-05-20",
+  "updated": "2026-05-20"
+}

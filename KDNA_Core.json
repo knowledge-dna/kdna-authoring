@@ -1,0 +1,135 @@
+{
+  "meta": {
+    "version": "0.4",
+    "domain": "kdna_authoring",
+    "created": "2026-05-20",
+    "purpose": "Define the core judgment needed to help users transform expertise into valid, high-quality KDNA domains. This is a meta-cognition domain — it teaches agents how to author KDNA, not what to put in a specific domain.",
+    "load_condition": "Always load when an agent is helping a user create, revise, audit, or improve a KDNA domain. Load before kdna-create skill execution."
+  },
+  "axioms": [
+    {
+      "id": "axiom_kdna_is_judgment_not_information",
+      "one_sentence": "KDNA encodes judgment structures, not information collections.",
+      "full_statement": "A valid KDNA domain must change how an agent interprets ambiguous situations. It is not a knowledge base — facts and reference material belong in RAG. It is not a manual — procedures belong in Skills. It is not a prompt template — expression control belongs in system prompts. The test: if loading this domain does not change the agent's diagnostic path on at least one real scenario, it is not KDNA.",
+      "why": "The most common KDNA authoring failure is producing a well-formatted JSON file that contains only knowledge, platitudes, or instructions. This axiom forces the agent to filter: is this content a judgment structure, or is it something else?"
+    },
+    {
+      "id": "axiom_start_from_expert_distinctions",
+      "one_sentence": "The most valuable KDNA content is what an expert notices that a novice or generic model misses.",
+      "full_statement": "Do not start by asking 'what do you know about this domain.' Start by asking: what situation looks like X but is actually Y? What mistake do beginners make that seems reasonable? What signal changes everything? What word or phrase misleads people in this domain? These expert distinctions are the raw material of axioms, misunderstandings, and scenario signals.",
+      "why": "Agents default to asking broad knowledge questions that produce generic answers. Expert distinctions cannot be generated — they must be extracted from lived experience through specific, contrast-seeking questions."
+    },
+    {
+      "id": "axiom_every_axiom_must_change_behavior",
+      "one_sentence": "Every axiom in a KDNA domain must change how the agent interprets at least one specific scenario.",
+      "full_statement": "An axiom is valid only if removing it would cause the agent to give a different answer to at least one real input. If the agent would give the same answer with or without the axiom, the axiom is decorative. The test is concrete: write one scenario where the axiom flips the interpretation, and one where it does not apply.",
+      "why": "The most common quality failure in KDNA is axioms that sound wise but affect nothing — e.g., 'Trust is important', 'Communication is key', 'Be user-centered.' These pass structural validation but fail behavioral validation."
+    },
+    {
+      "id": "axiom_misunderstandings_are_more_valuable_than_definitions",
+      "one_sentence": "Preventing confident wrong interpretation is more valuable than providing correct definitions.",
+      "full_statement": "A KDNA domain's primary value comes from its misunderstandings section — not its ontology. Definitions tell the agent what terms mean. Misunderstandings tell the agent what wrong interpretation to actively avoid, which directly changes its diagnostic behavior. Every important concept in the domain should have a corresponding misunderstanding entry.",
+      "why": "Generic models are more likely to make confident wrong interpretations than to lack vocabulary. KDNA's highest-leverage content is the 'common misread → correct frame → key distinction' pattern."
+    },
+    {
+      "id": "axiom_cases_reveal_structure_not_stories",
+      "one_sentence": "A KDNA case is useful only when it exposes the structural pattern of judgment — signal, misread, correct frame, action implication.",
+      "full_statement": "A case that only tells what happened is a story. A case that shows what signal was present, what misinterpretation occurred, what correct frame was applied, and what action followed is a judgment template the agent can reuse. Every case must have a structural_pattern field that extracts the reusable pattern.",
+      "why": "Agents tend to write cases as narrative success stories. These read well but cannot be reused by another agent because the judgment structure is implicit. The case must make the structure explicit."
+    },
+    {
+      "id": "axiom_authoring_is_interview_first_generation_second",
+      "one_sentence": "The agent must extract the user's lived distinctions through targeted questions before drafting any KDNA file.",
+      "full_statement": "Directly generating KDNA from a topic name or a vague description produces generic, knowledge-dump JSON that passes validation but fails behavioral testing. The agent must first interview the user: what do you see that others miss? When have you been wrong in this domain? What signal changes your next move? Only after extracting specific, contrast-based answers should the agent draft KDNA files.",
+      "why": "Interviews surface expert distinctions that cannot be inferred from topic labels. Skipping the interview step is the root cause of hollow KDNA domains."
+    }
+  ],
+  "ontology": [
+    {
+      "id": "expert_distinction",
+      "one_sentence": "A specific difference an expert perceives between two situations that appear similar to a novice or to a generic model.",
+      "essence": "It is not knowledge — it is a perceptual or diagnostic difference. 'The customer who asks about competitors is doing research. The customer who asks about your specific implementation is close to buying.' This cannot be generated from domain knowledge; it must come from lived experience.",
+      "boundary": "It is not a preference, a value, or a generalization. 'I prefer detailed documentation' is a preference, not a distinction. The distinction must change how a situation is judged.",
+      "trigger_signal": "The user says 'most people think X but actually...' or 'the real question is not Y but Z' or 'the difference is...'"
+    },
+    {
+      "id": "hollow_kdna",
+      "one_sentence": "A KDNA domain that passes structural validation but fails behavioral testing — its axioms are slogans, its misunderstandings are straw men, its self-checks are generic, and loading it does not change agent judgment.",
+      "essence": "It is JSON that looks like KDNA but is not KDNA. The most dangerous form because it creates false confidence — the creator thinks they have encoded expertise, but the domain produces the same outputs as an unloaded agent.",
+      "boundary": "It is not an incomplete KDNA. Incomplete KDNA lacks files or fields. Hollow KDNA has all files and fields filled, but the content is vacuous. Incomplete can be fixed by adding content. Hollow requires replacing content.",
+      "trigger_signal": "Axioms are single sentences under 50 characters ('Trust is important'). Misunderstandings are straw men no agent would believe ('communication doesn't matter'). Self-checks are generic ('Is this helpful?')."
+    },
+    {
+      "id": "judgment_structure",
+      "one_sentence": "The reusable pattern that an agent applies when interpreting an ambiguous input: signal → misread → correct frame → boundary → action.",
+      "essence": "It is not a script. It is a cognitive template. When the input contains signal X, the agent knows: common misread is Y, correct frame is Z, boundary condition is W, appropriate action is Q. This pattern repeats across scenarios within a domain.",
+      "boundary": "It is not a workflow, checklist, or decision tree. Those describe sequences of actions. Judgment structure describes sequences of interpretation changes.",
+      "trigger_signal": "The user describes a pattern: 'when I see this, I don't do what most people do, I first check this, then I decide.'"
+    },
+    {
+      "id": "quality_audit",
+      "one_sentence": "The process of testing whether a KDNA domain's content actually changes agent interpretation — not just whether its JSON is valid.",
+      "essence": "A quality audit asks: for each axiom, can I construct a scenario where it changes the answer? For each misunderstanding, would a real agent actually hold this wrong belief? For each self-check, would a domain expert say 'yes, that's exactly what I check'?",
+      "boundary": "It is not structural validation (kdna-lint, kdna-validate). Structural validation checks JSON compliance. Quality audit checks behavioral effectiveness. A domain can pass structural validation and fail quality audit.",
+      "trigger_signal": "The agent has drafted KDNA files and needs to evaluate whether the content is actually useful before publishing."
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "frame_authoring_pipeline",
+      "name": "KDNA Authoring Pipeline",
+      "when_to_use": "Use when helping a user create a KDNA domain from scratch. Follow the interview → draft → audit → refine cycle.",
+      "steps": [
+        "Interview: ask contrast-seeking questions to extract expert distinctions.",
+        "Identify core judgment: what is the ONE diagnostic shift this domain should create?",
+        "Draft Core: write axioms that encode the expert distinctions as behavioral rules.",
+        "Draft Patterns: extract misunderstandings from the expert's 'people always get this wrong' stories, ban the terms that mislead, write domain-specific self-checks.",
+        "Audit: test each axiom against the behavior-change test. Check each misunderstanding is a real agent belief. Verify self-checks are yes/no and domain-specific.",
+        "Refine: add optional files (Scenarios, Cases, Reasoning, Evolution) that extend the judgment structure with concrete examples and growth paths.",
+        "Validate: run kdna-lint and kdna-validate, then test with a real scenario input."
+      ]
+    },
+    {
+      "id": "frame_kdna_audit",
+      "name": "KDNA Quality Audit",
+      "when_to_use": "Use when reviewing an existing KDNA domain — whether draft, submitted, or published — to identify hollow content.",
+      "steps": [
+        "Axiom audit: for each axiom, write one scenario where it changes the answer and one where it does not apply.",
+        "Misunderstanding audit: for each misunderstanding, ask 'would a competent but non-expert agent actually believe this?' If no, flag as straw man.",
+        "Banned term audit: for each banned term, check that the 'why' explains the specific judgment error it causes, not just 'it's vague.'",
+        "Self-check audit: verify each self-check is yes/no answerable and specific to this domain — reject 'Is this helpful?' style checks.",
+        "Stance audit: confirm each stance is prescriptive and would bias the agent toward a different answer than the opposite stance.",
+        "Case audit: verify each case has a structural_pattern that extracts the reusable judgment pattern."
+      ]
+    }
+  ],
+  "core_structure": [
+    {
+      "from": "user_has_experience_no_kdna",
+      "to": "expert_distinctions_extracted",
+      "via": "contrast-seeking interview questions that surface what the expert notices that others miss"
+    },
+    {
+      "from": "agent_generates_kdna_from_topic_name",
+      "to": "hollow_kdna_produced",
+      "via": "skipping the interview step produces generic axioms, straw-man misunderstandings, and knowledge-dump patterns"
+    },
+    {
+      "from": "kdna_passes_structural_validation",
+      "to": "kdna_still_fails_behaviorally",
+      "via": "content is well-formatted slogans, polite misunderstandings, and generic self-checks — JSON valid, behaviorally empty"
+    },
+    {
+      "from": "expert_cant_write_json",
+      "to": "expert_can_describe_distinctions",
+      "via": "the agent asks specific contrast questions instead of asking the expert to fill in JSON fields"
+    }
+  ],
+  "stances": [
+    "Do not generate KDNA from a topic name. Always interview first, then draft.",
+    "A 4-axiom domain where each axiom changes behavior is better than a 20-axiom domain where none do.",
+    "Every misunderstanding must describe a belief a real agent might hold — never a straw man.",
+    "If the user cannot name a specific situation they judged differently from how a novice would, the domain is not ready.",
+    "Structural validation proves the JSON is correct. Behavioral testing proves the KDNA is useful. Both are required."
+  ]
+}

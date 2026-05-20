@@ -1,0 +1,115 @@
+{
+  "meta": {
+    "version": "0.4",
+    "domain": "kdna_authoring",
+    "created": "2026-05-20",
+    "purpose": "Capability stages for KDNA authoring — from template filler to domain architect. Used to guide agent and user growth in authoring skill.",
+    "load_condition": "Load when the user or agent asks about improving KDNA authoring skills, or when evaluating an authoring session's maturity level."
+  },
+  "stages": [
+    {
+      "id": "stage_template_filler",
+      "name": "Template Filler",
+      "description": "Fills KDNA JSON fields with content directly from the user's initial description without extracting distinctions. Produces structurally valid but behaviorally hollow domains.",
+      "indicators": [
+        "Axioms are generic slogans under 50 characters",
+        "Misunderstandings are straw men no agent would believe",
+        "Banned terms are vague ('bad communication')",
+        "Self-checks are generic ('Is this helpful?')",
+        "Cases are narrative stories without structural patterns",
+        "Domain passes kdna-lint but fails all behavioral tests"
+      ]
+    },
+    {
+      "id": "stage_distinction_extractor",
+      "name": "Distinction Extractor",
+      "description": "Asks contrast-seeking questions and extracts specific expert distinctions from user responses. Drafts axioms that reflect real diagnostic patterns.",
+      "indicators": [
+        "Axioms encode specific perceptual or diagnostic differences",
+        "Misunderstandings describe beliefs a real non-expert agent might hold",
+        "Self-checks are domain-specific yes/no questions",
+        "At least 3 expert distinctions are documented before drafting begins",
+        "Each axiom can be tested against a concrete scenario"
+      ]
+    },
+    {
+      "id": "stage_misjudgment_preventer",
+      "name": "Misjudgment Preventer",
+      "description": "Can independently audit KDNA domains for hollow content — detects slogans, straw men, and generic checks — and recommends specific replacements.",
+      "indicators": [
+        "Applies the KDNA Quality Audit framework without prompting",
+        "Can distinguish between incomplete and hollow KDNA",
+        "Recommends specific expert-distinction replacements for hollow axioms",
+        "Audits misunderstandings for straw-man detection",
+        "Flags generic self-checks and suggests domain-specific alternatives"
+      ]
+    },
+    {
+      "id": "stage_domain_architect",
+      "name": "Domain Architect",
+      "description": "Can judge how a large domain should be decomposed into multiple narrow KDNA domains that form a cluster. Understands domain granularity and composition tradeoffs.",
+      "indicators": [
+        "Identifies when a domain is too broad and suggests specific sub-domains",
+        "Designs clusters where each domain addresses a specific judgment gap",
+        "Ensures cluster domains have non-overlapping judgment scopes",
+        "Designs cluster routing logic (use_when conditions)",
+        "Can audit cluster coherence — do domains complement or contradict?"
+      ]
+    }
+  ],
+  "evolution_layers": [
+    {
+      "id": "layer_filler_to_extractor",
+      "name": "From filling to extracting",
+      "capability": "Stop generating KDNA from topic names. Start asking contrast-seeking questions that surface specific expert distinctions before drafting.",
+      "from_stage": "stage_template_filler",
+      "to_stage": "stage_distinction_extractor"
+    },
+    {
+      "id": "layer_extractor_to_preventer",
+      "name": "From extracting to auditing",
+      "capability": "Go beyond drafting quality KDNA — learn to audit existing domains for hollow content and recommend specific fixes.",
+      "from_stage": "stage_distinction_extractor",
+      "to_stage": "stage_misjudgment_preventer"
+    },
+    {
+      "id": "layer_preventer_to_architect",
+      "name": "From auditing to architecting",
+      "capability": "Learn to decompose broad domains into focused clusters and design coherent multi-domain judgment systems.",
+      "from_stage": "stage_misjudgment_preventer",
+      "to_stage": "stage_domain_architect"
+    }
+  ],
+  "measurement": [
+    {
+      "id": "meas_axiom_behavior_change_rate",
+      "what": "Percentage of axioms in a created domain that demonstrably change agent interpretation on at least one test scenario",
+      "how": "For each axiom, construct a scenario where the axiom would flip the interpretation. Count pass vs fail.",
+      "threshold": "≥ 80%"
+    },
+    {
+      "id": "meas_misunderstanding_realness",
+      "what": "Percentage of misunderstandings that describe a belief a real non-expert agent might hold",
+      "how": "For each misunderstanding, ask: 'Would a competent but domain-naive agent actually default to this wrong belief?'",
+      "threshold": "≥ 90%"
+    },
+    {
+      "id": "meas_interview_depth",
+      "what": "Number of specific expert distinctions extracted before the first KDNA file is drafted",
+      "how": "Count contrast-seeking questions asked and distinct, concrete distinctions the user provided in response",
+      "threshold": "≥ 3"
+    },
+    {
+      "id": "meas_self_check_specificity",
+      "what": "Percentage of self-checks that are domain-specific yes/no questions (not generic quality checks)",
+      "how": "For each self-check, test: would this check make sense in a different domain? If yes, it's generic.",
+      "threshold": "≥ 90%"
+    },
+    {
+      "id": "meas_structural_pattern_in_cases",
+      "what": "Percentage of cases that include an explicit structural_pattern field",
+      "how": "Check each case for structural_pattern. Verify the pattern contains signal → misread → correct frame → action.",
+      "threshold": "= 100%"
+    }
+  ]
+}

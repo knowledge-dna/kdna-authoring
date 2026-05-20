@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "version": "0.4",
+    "domain": "kdna_authoring",
+    "created": "2026-05-20",
+    "purpose": "Concrete cases showing how KDNA authoring transforms raw input into judgment structures — and what happens when it goes wrong.",
+    "load_condition": "Load when the user or agent needs examples of the authoring process in action."
+  },
+  "cases": [
+    {
+      "id": "case_expert_story_to_kdna",
+      "title": "From sales experience to KDNA axioms",
+      "context": "A salesperson says: 'I've been selling enterprise software for 15 years. The biggest thing I've learned is that when a customer says the price is too high, it's almost never about the price. It's about fear — fear of making the wrong decision, fear of looking bad internally, fear of change. But most salespeople immediately offer a discount.'",
+      "what_happened": "Without kdna_authoring, an agent might generate a generic Sales KDNA with axioms like 'Understand customer needs' and 'Build trust through active listening.' These are true but hollow — every sales book says them. With kdna_authoring loaded, the agent asks: 'What specific signal tells you it's fear vs a real budget issue?' The salesperson answers: 'When they say \"I need to think about it\" without asking for a trial or references, it's fear. When they ask for a payment plan or ask about specific ROI numbers, it's a real budget concern.' The agent encodes: axiom = 'Price objections are certainty deficits, not price problems.' misunderstanding = 'Customer asking about price means they want a discount.' banned term: 'discount' → replace with 'diagnose certainty dimension first.'",
+      "what_was_learned": "Expert distinctions live in the 'how do you tell the difference' follow-ups. The initial statement ('it's almost never about price') is the surface. The signal ('when they say X without Y, it's Z') is the judgment structure. The agent must go one level deeper than the initial claim.",
+      "structural_pattern": "surface_claim → contrast_followup → specific_signal → axiom+misunderstanding+terminology"
+    },
+    {
+      "id": "case_skill_to_kdna",
+      "title": "From agent skill workflow to KDNA judgment",
+      "context": "A developer has a Claude Skill for bug diagnosis. The skill instructs: 'First reproduce the bug. Then isolate the minimal failing case. Form a hypothesis. Make one change. Test. If fixed, add a regression test.' The developer asks the agent to create a KDNA domain from this skill.",
+      "what_happened": "Without kdna_authoring, an agent copies the skill steps into a KDNA framework and calls it done. With kdna_authoring, the agent recognizes the skill encodes procedure. The agent asks: 'Before you even start reproducing, what do you check to know whether this is a bug or a misunderstanding?' 'What is the most common false assumption developers make when diagnosing?' 'When does reproducing the bug actually lead you in the wrong direction?' The developer answers: 'Developers often fix what they see without checking if the fix addresses the root cause. And sometimes the bug only appears in production because of data or concurrency — reproducing locally won't catch it.' The agent encodes: axiom = 'A fix without root-cause confirmation is a guess.' misunderstanding = 'If the bug reproduces locally, the local fix will work in production.' The skill continues to handle execution; the KDNA handles judgment.",
+      "what_was_learned": "Skills encode what to do. KDNA encodes what to check before doing it. The transformation is: extract the diagnostic preconditions from the procedural steps. The agent must ask 'what must be true before this step?' rather than 'what is this step?'",
+      "structural_pattern": "skill_procedure → extract_preconditions → diagnostic_distinctions → kdna_axioms + skill_continues_separately"
+    },
+    {
+      "id": "case_hollow_kdna_audit",
+      "title": "Auditing a hollow KDNA domain",
+      "context": "A user submits a KDNA domain called 'leadership.' It has 8 axioms including 'Trust is the foundation of leadership,' 'Communication is key,' 'Lead by example,' 'Empower your team,' 'Be authentic,' 'Focus on results,' 'Develop your people,' 'Embrace change.' It has 3 misunderstandings: 'Leadership is about authority' (straw man — no agent believes this), 'Communication does not matter' (another straw man), and 'Results are everything' (vague). All self-checks are generic: 'Is this helpful?' 'Is this clear?' 'Is this actionable?'",
+      "what_happened": "Without kdna_authoring, the agent might say 'the domain looks comprehensive, all required fields are filled.' With kdna_authoring, the agent applies the KDNA Quality Audit: axiom audit reveals zero of 8 axioms change interpretation — they are all slogans. Misunderstanding audit reveals all 3 are straw men. Self-check audit reveals all are generic. Banned term audit reveals no judgment-error explanations. The agent reports: 'This domain passes structural validation but fails behavioral validation completely. Zero axioms change how an agent interprets any scenario. Every misunderstanding would be rejected by a real agent. Recommendation: start over with an interview to extract specific leadership distinctions.'",
+      "what_was_learned": "Structural validation (kdna-lint) is a necessary floor but a dangerous ceiling. It proves the JSON is correct, not that the KDNA is useful. The quality audit catches what lint cannot: whether the content actually encodes judgment. A domain that passes lint but fails audit is worse than an incomplete domain — it creates false confidence.",
+      "structural_pattern": "passes_structural_validation → fails_behavioral_audit → axioms_are_slogans → misunderstandings_are_straw_men → self_checks_are_generic → needs_full_redo_with_interview"
+    }
+  ]
+}
