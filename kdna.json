@@ -1,5 +1,5 @@
 {
-  "kdna_spec": "0.4",
+  "kdna_spec": "1.0-rc",
   "name": "kdna_authoring",
   "version": "0.1.0",
   "status": "experimental",
@@ -24,6 +24,5 @@
   "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
   "file_count": 6,
   "created": "2026-05-20",
-  "updated": "2026-05-20",
-  "spec_version": "1.0-rc"
+  "updated": "2026-05-20"
 }
