@@ -1,13 +1,14 @@
 {
-  "kdna_spec": "1.0-rc",
-  "name": "kdna_authoring",
-  "version": "0.1.0",
+  "kdna_spec": "1.0",
+  "name": "@aikdna/kdna_authoring",
+  "version": "0.7.0",
   "status": "experimental",
   "access": "open",
   "language": "en",
   "author": {
     "name": "KDNA Team",
-    "id": "kdna-team"
+    "id": "kdna-team",
+    "pubkey": "ed25519:43d22af8f0e189b6fd42bfaab710f52f4bc5f0ae3f5e04719a1a1d9ce9760fbe"
   },
   "license": {
     "type": "CC-BY-4.0"
@@ -24,5 +25,6 @@
   "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
   "file_count": 6,
   "created": "2026-05-20",
-  "updated": "2026-05-20"
+  "updated": "2026-05-20",
+  "signature": "ed25519:15ad01227ca8556402e08275603f2904670447cf9fe8d7b859de52bcfe2bde140aaabc778ce0b4271741c72b87d2b999674e4065b83bc13dae0e69107a633a06"
 }
