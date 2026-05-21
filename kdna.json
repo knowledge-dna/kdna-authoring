@@ -1,7 +1,7 @@
 {
   "kdna_spec": "1.0",
   "name": "@aikdna/kdna_authoring",
-  "version": "0.7.1",
+  "version": "0.7.5",
   "status": "experimental",
   "access": "open",
   "language": "en",
@@ -27,5 +27,6 @@
   "file_count": 6,
   "created": "2026-05-20",
   "updated": "2026-05-20",
-  "signature": "ed25519:14ba13db1d86f07669fecff170e5480c714d8e4275cf63f5c95cdd5aa0bab71f6096da698ace10c2a05aeb2e873073a04adaecf964d5bfff65d797f1ea187f0a"
+  "judgment_version": "2026.05",
+  "signature": "ed25519:1bf5f9a370a5f2fc518985ceffc3651fb02ae762cd03274b951fc995ca18f67b8d05be593c75f70504e7fe6b17d2405fb00ad2e5706fda338073b2aaebe8aa06"
 }
