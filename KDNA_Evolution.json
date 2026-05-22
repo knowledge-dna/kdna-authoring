@@ -1,9 +1,9 @@
 {
   "meta": {
-    "version": "0.4",
+    "version": "1.0-rc",
     "domain": "kdna_authoring",
     "created": "2026-05-20",
-    "purpose": "Capability stages for KDNA authoring — from template filler to domain architect. Used to guide agent and user growth in authoring skill.",
+    "purpose": "Capability stages for KDNA authoring \u2014 from template filler to domain architect. Used to guide agent and user growth in authoring skill.",
     "load_condition": "Load when the user or agent asks about improving KDNA authoring skills, or when evaluating an authoring session's maturity level."
   },
   "stages": [
@@ -35,7 +35,7 @@
     {
       "id": "stage_misjudgment_preventer",
       "name": "Misjudgment Preventer",
-      "description": "Can independently audit KDNA domains for hollow content — detects slogans, straw men, and generic checks — and recommends specific replacements.",
+      "description": "Can independently audit KDNA domains for hollow content \u2014 detects slogans, straw men, and generic checks \u2014 and recommends specific replacements.",
       "indicators": [
         "Applies the KDNA Quality Audit framework without prompting",
         "Can distinguish between incomplete and hollow KDNA",
@@ -53,7 +53,7 @@
         "Designs clusters where each domain addresses a specific judgment gap",
         "Ensures cluster domains have non-overlapping judgment scopes",
         "Designs cluster routing logic (use_when conditions)",
-        "Can audit cluster coherence — do domains complement or contradict?"
+        "Can audit cluster coherence \u2014 do domains complement or contradict?"
       ]
     }
   ],
@@ -68,7 +68,7 @@
     {
       "id": "layer_extractor_to_preventer",
       "name": "From extracting to auditing",
-      "capability": "Go beyond drafting quality KDNA — learn to audit existing domains for hollow content and recommend specific fixes.",
+      "capability": "Go beyond drafting quality KDNA \u2014 learn to audit existing domains for hollow content and recommend specific fixes.",
       "from_stage": "stage_distinction_extractor",
       "to_stage": "stage_misjudgment_preventer"
     },
@@ -85,30 +85,30 @@
       "id": "meas_axiom_behavior_change_rate",
       "what": "Percentage of axioms in a created domain that demonstrably change agent interpretation on at least one test scenario",
       "how": "For each axiom, construct a scenario where the axiom would flip the interpretation. Count pass vs fail.",
-      "threshold": "≥ 80%"
+      "threshold": "\u2265 80%"
     },
     {
       "id": "meas_misunderstanding_realness",
       "what": "Percentage of misunderstandings that describe a belief a real non-expert agent might hold",
       "how": "For each misunderstanding, ask: 'Would a competent but domain-naive agent actually default to this wrong belief?'",
-      "threshold": "≥ 90%"
+      "threshold": "\u2265 90%"
     },
     {
       "id": "meas_interview_depth",
       "what": "Number of specific expert distinctions extracted before the first KDNA file is drafted",
       "how": "Count contrast-seeking questions asked and distinct, concrete distinctions the user provided in response",
-      "threshold": "≥ 3"
+      "threshold": "\u2265 3"
     },
     {
       "id": "meas_self_check_specificity",
       "what": "Percentage of self-checks that are domain-specific yes/no questions (not generic quality checks)",
       "how": "For each self-check, test: would this check make sense in a different domain? If yes, it's generic.",
-      "threshold": "≥ 90%"
+      "threshold": "\u2265 90%"
     },
     {
       "id": "meas_structural_pattern_in_cases",
       "what": "Percentage of cases that include an explicit structural_pattern field",
-      "how": "Check each case for structural_pattern. Verify the pattern contains signal → misread → correct frame → action.",
+      "how": "Check each case for structural_pattern. Verify the pattern contains signal \u2192 misread \u2192 correct frame \u2192 action.",
       "threshold": "= 100%"
     }
   ]

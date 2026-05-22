@@ -1,0 +1,14 @@
+{
+  "id": "eval-001",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "User says: 'Create a KDNA domain for startup fundraising.' The agent directly generates a full KDNA domain with axioms like 'Trust is important' and 'Communication is key' without interviewing the user about their specific distinctions, past mistakes, or what signals they notice that others miss.",
+  "expected_classification": "HOLLOW_KDNA",
+  "expected_axioms": [
+    "axiom_kdna_is_judgment_not_information",
+    "axiom_authoring_is_interview_first_generation_second",
+    "axiom_every_axiom_must_change_behavior"
+  ],
+  "output_rubric": "Agent must: (1) identify that generating KDNA from a topic name without interview produces hollow KDNA, (2) flag decorative axioms that pass structural validation but fail behavioral testing, (3) recommend the interview-first pipeline (frame_authoring_pipeline). Failure if agent generates KDNA directly from topic name without first interviewing the user.",
+  "pass": null,
+  "evidence": ""
+}

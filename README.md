@@ -2,26 +2,29 @@
 
 # kdna-authoring
 
-[![KDNA Spec](https://img.shields.io/badge/KDNA-v0.4-4c1)](https://github.com/knowledge-dna/KDNA)
+[![KDNA Spec](https://img.shields.io/badge/KDNA-v1.0--rc-4c1)](https://github.com/knowledge-dna/KDNA)
 
-**KDNA Authoring** — A meta-cognition domain that teaches AI agents how to help humans create high-quality KDNA domains through interview-first authoring, quality auditing, and distinction extraction.
+**Kdna Authoring** — Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.
 
-## Core Insight
+## Four Questions
+
+### 1. What does this domain judge?
+
+Define the core judgment needed to help users transform expertise into valid, high-quality KDNA domains. This is a meta-cognition domain — it teaches agents how to author KDNA, not what to put in a specific domain.
+
+### 2. When does it load?
+
+Always load when an agent is helping a user create, revise, audit, or improve a KDNA domain. Load before kdna-create skill execution.
+
+### 3. What is the core judgment?
 
 KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.
 
-## Scope
-
-This domain helps AI agents judge HOW to author a KDNA domain — what questions to ask, what content is valid judgment vs hollow material, and how to audit quality. It is designed for agents running kdna-create skill, and for users who want to encode their expertise.
-
-## Out of Scope
-
-This domain is NOT a KDNA template library. It is NOT a prompt for generating KDNA automatically. It is NOT a questionnaire or form-filling guide. It encodes the JUDGMENT agents need to conduct effective authoring sessions — not the mechanical steps of writing JSON.
-
-## Install
+### 4. How do I use it?
 
 ```bash
 kdna install github:knowledge-dna/kdna-authoring
+kdna validate .
 ```
 
 ## Files
@@ -30,17 +33,12 @@ kdna install github:knowledge-dna/kdna-authoring
 |------|---------|
 | KDNA_Core.json | Axioms, ontology, frameworks, core causal structure, stances |
 | KDNA_Patterns.json | Terminology, banned terms, misunderstandings, self-checks |
-| KDNA_Scenarios.json | 5 authoring scenarios: stories, frameworks, documents, drafts, skills |
-| KDNA_Cases.json | 3 cases: expert story→KDNA, skill→KDNA, hollow KDNA audit |
-| KDNA_Reasoning.json | 4 reasoning chains explaining why each rule matters |
-| KDNA_Evolution.json | 4 capability stages + 5 measurable indicators |
+| KDNA_Scenarios.json | Scenario signals that should shift strategy |
+| KDNA_Cases.json | Concrete cases showing structure rather than scripts |
+| KDNA_Reasoning.json | Reasoning chains: conclusion → logic → so_what |
+| KDNA_Evolution.json | Capability stages, measurable indicators, growth paths |
 | kdna.json | Domain manifest |
-
-## Validate
-
-```bash
-kdna validate .
-```
+| evals/ | Evaluation cases (quality: untested) |
 
 ## License
 
