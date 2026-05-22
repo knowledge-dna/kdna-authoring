@@ -29,5 +29,6 @@
   "updated": "2026-05-20",
   "judgment_version": "2026.05",
   "signature": "ed25519:1bf5f9a370a5f2fc518985ceffc3651fb02ae762cd03274b951fc995ca18f67b8d05be593c75f70504e7fe6b17d2405fb00ad2e5706fda338073b2aaebe8aa06",
-  "quality_badge": "untested"
+  "quality_badge": "untested",
+  "spec_version": "1.0-rc"
 }
