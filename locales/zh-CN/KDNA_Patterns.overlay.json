@@ -1,0 +1,2 @@
+{"locale":"zh-CN","base":"en","spec_version":"1.0-rc","translations":{
+"misread_kdna_is_prompt_library.wrong":"KDNA 就像提示词库——你可以放在上下文窗口里的文本。","misread_kdna_is_prompt_library.correct":"KDNA 是加载后被 Agent 用于塑造其对内容的理解、对用户的回应方式以及对建议的风险评估的判断框架。提示告诉 Agent 做什么；KDNA 告诉 Agent 如何解释。"}}

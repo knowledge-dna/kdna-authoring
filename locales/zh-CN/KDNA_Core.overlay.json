@@ -1,0 +1,42 @@
+{"locale":"zh-CN","base":"en","spec_version":"1.0-rc","translations":{
+"axiom_kdna_is_judgment_not_information.one_sentence":"KDNA 编码的是判断结构，而不是信息集合。",
+"axiom_kdna_is_judgment_not_information.full_statement":"一个有效的 KDNA 领域必须改变 Agent 如何解释模糊情境的方式。它不知识库——事实和参考资料属于 RAG。它不是操作手册——流程属于 Skills。它不是提示模板——表达控制属于系统提示。检验标准：如果加载这个领域不会改变 Agent 在至少一个真实场景上的诊断路径，它就不是 KDNA。",
+"axiom_kdna_is_judgment_not_information.why":"最常见的 KDNA 创作失败是产出一份格式正确但只包含知识、套话或指令的 JSON 文件。这个公理迫使 Agent 进行过滤：这个内容是判断结构，还是其他东西？",
+"axiom_kdna_is_judgment_not_information.applies_when.0":"在过滤现有文档时，将诊断启发式与事实参考资料或分步流程分开",
+"axiom_kdna_is_judgment_not_information.applies_when.1":"通过测试 KDNA 草稿是否改变了 Agent 对特定模糊场景的响应路径来验证它",
+"axiom_kdna_is_judgment_not_information.applies_when.2":"在模糊信号的解释决定正确下一步的领域（而非机械执行）中创作 KDNA",
+"axiom_kdna_is_judgment_not_information.does_not_apply_when.0":"构建包含历史数据、法规或产品规格的RAG知识库用于检索",
+"axiom_kdna_is_judgment_not_information.failure_risk":"Agent 会产出一份结构有效但功能惰性的 JSON 文件，只存储事实或指令，而在实践中无法改变诊断推理。",
+
+"axiom_start_from_expert_distinctions.one_sentence":"最有价值的 KDNA 内容是专家注意到而新手或通用模型会错过的东西。",
+"axiom_start_from_expert_distinctions.full_statement":"不要从'你对这个领域了解什么'开始提问。应该这么问：什么情况看起来像 X 但实际上却是 Y？新手会犯什么看似合理的错误？什么信号会完全改变策略？在这个领域里，什么词或短语会误导人？这些专家区分点才是公理、误解识别和场景信号的原始素材。",
+"axiom_start_from_expert_distinctions.why":"Agent 默认会提出宽泛的知识问题，产生通用答案。专家区分点无法被生成——它们必须通过具体的、寻求对比的提问从实际经验中提取出来。",
+"axiom_start_from_expert_distinctions.applies_when.0":"访谈一位资深从业者，捕捉专业领域（如临床分诊或欺诈检测）中非显而易见的决策触发点",
+"axiom_start_from_expert_distinctions.applies_when.1":"设计访谈提示，明确要求提供过去的错误、误导性信号或反直觉的模式匹配",
+"axiom_start_from_expert_distinctions.applies_when.2":"从实际专业经验而非学术教材中提取公理和误解识别的原始素材",
+"axiom_start_from_expert_distinctions.does_not_apply_when.0":"向新团队介绍广泛理解的行业标准或基本合规检查清单",
+"axiom_start_from_expert_distinctions.failure_risk":"创作过程会收获通用的教材知识而非高杠杆的诊断线索，导致 KDNA 领域无法提供任何竞争性的解释优势。",
+
+"axiom_every_axiom_must_change_behavior.one_sentence":"KDNA 领域中每条公理都必须改变 Agent 对至少一个特定场景的解释方式。",
+"axiom_every_axiom_must_change_behavior.full_statement":"一条公理只有在移除它会导致 Agent 对至少一个真实输入给出不同答案时才有效。如果 Agent 在有和没有这条公理时给出相同答案，这条公理就是装饰性的。检验是具体的：写一个公理会翻转解释的场景，再写一个公理不适用的场景。",
+"axiom_every_axiom_must_change_behavior.why":"KDNA 最常见质量失败是公理听起来明智但不影响任何东西——例如'信任很重要'、'沟通是关键'、'以用户为中心'。这些通过结构验证但通不过行为验证。",
+"axiom_every_axiom_must_change_behavior.applies_when.0":"审查草拟公理，确保它能在特定边界案例中直接与常见天真解释相矛盾",
+"axiom_every_axiom_must_change_behavior.applies_when.1":"在验证的 compare 测试中，加载该公理后 Agent 选择了不同的诊断路径",
+"axiom_every_axiom_must_change_behavior.failure_risk":"允许看似明智但无功能区分能力的公理通过质量门，产生名义上合格但实质上无用的 KDNA 领域。",
+
+"axiom_misunderstandings_come_from_real_errors.one_sentence":"KDNA 中的误解识别必须来自真实错误模式，而非理论上的稻草人。",
+"axiom_misunderstandings_come_from_real_errors.full_statement":"测试一条误解：是否有人——无论是新手、普通模型还是领域外专家——实际犯过这个错误并觉得纠正有用？如果错误描述太荒谬以至于没有人会相信，它就是稻草人。好的误解让读者认出自己过去的判断。",
+"axiom_misunderstandings_come_from_real_errors.why":"稻草人误解使 KDNA 对 Agent 无用。如果误解描述的不是真实的错误模式，Agent 永远不会在实际使用中触发对应规则。",
+"axiom_misunderstandings_come_from_real_errors.applies_when.0":"评估误解草稿以辨别专家记录的错误模式与仅理论可能的错误信念",
+"axiom_misunderstandings_come_from_real_errors.failure_risk":"KDNA 包含 Agent 永远不会遇到的误解，使 KDNA 中的误解部分成为纯装饰性文本。",
+
+"terminology.banned_terms.obviously.why":"'显然'跳过了一个需要问的关键问题：对谁显然？假定共享理解使 Agent 草率地判断为'不需要澄清'——而实际上恰好存在一个会使判断改变的真实模糊点。","terminology.banned_terms.obviously.replace_with":"明确陈述假设或触发条件，使模糊点可见。","terminology.banned_terms.just.why":"'只是'、'只不过'掩盖了复杂度。它让 Agent 接受一个过于简单、跳过真实细微差异的回答——而这些细微差异正是不同判断会产生不同结果的地方。","terminology.banned_terms.just.replace_with":"用精确诊断替代简化回答。描述真实情况而非跳过它。","terminology.banned_terms.always.why":"KDNA 中极少有公理能'总是'成立。'总是'跳过了边界定义——而边界正是 KDNA 中防止在不对的情境下应用判断的关键部分。","terminology.banned_terms.always.replace_with":"用 applies_when/does_not_apply_when 显式声明条件。",
+
+"self_check.0":"我是在帮助用户区分他们的专家判断和通用信息、流程或提示吗？",
+"self_check.1":"我所写的每条误解都是某人实际犯过的真实错误——还是一个没人会信的稻草人？",
+"self_check.2":"我能指出至少一个具体场景，在此场景中这条公理会改变 Agent 的答案吗？",
+"self_check.3":"我是否避免了所有禁用术语并使用特定领域诊断语言？",
+"self_check.4":"用户是否用他们自己的话确认了判断（Feynman 复述）——而不仅仅是点头同意？",
+
+"terminology.standard_terms.judgment asset.definition":"一份可表达、可验证、可组合的人类领域判断——不仅仅知识数据或指令。","terminology.standard_terms.expert distinction.definition":"专家注意到而新手会错过的东西。一个可靠的模式，用于区分看起来相似但需要不同策略的情境。"
+}}
