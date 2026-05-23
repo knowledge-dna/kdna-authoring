@@ -22,7 +22,7 @@
     "interview",
     "domain creation"
   ],
-  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains \u2014 through interview-first authoring, quality auditing, and distinction extraction.",
+  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.",
   "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
   "file_count": 6,
   "created": "2026-05-20",
@@ -30,5 +30,11 @@
   "judgment_version": "2026.05",
   "signature": "ed25519:1bf5f9a370a5f2fc518985ceffc3651fb02ae762cd03274b951fc995ca18f67b8d05be593c75f70504e7fe6b17d2405fb00ad2e5706fda338073b2aaebe8aa06",
   "quality_badge": "untested",
-  "spec_version": "1.0-rc"
+  "spec_version": "1.0-rc",
+  "languages": [
+    "en",
+    "zh-CN"
+  ],
+  "default_language": "en",
+  "i18n_level": "L2"
 }
