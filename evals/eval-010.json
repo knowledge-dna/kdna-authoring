@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_010",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "I interviewed an expert. How do I extract axioms from the transcript?",
+  "expected_classification": "expert_extraction",
+  "expected_axioms": [
+    "start_from_expert_distinctions"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}

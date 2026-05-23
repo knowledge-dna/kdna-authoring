@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_002",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "I want to create a KDNA for good leadership. Where do I start?",
+  "expected_classification": "too_broad",
+  "expected_axioms": [
+    "kdna_is_judgment_not_information"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}

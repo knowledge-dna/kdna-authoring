@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_005",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "What is the difference between a KDNA and a style guide?",
+  "expected_classification": "boundary_question",
+  "expected_axioms": [
+    "kdna_is_judgment_not_information"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}

@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_004",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "I copied our company wiki into KDNA format. Is that right?",
+  "expected_classification": "knowledge_not_judgment",
+  "expected_axioms": [
+    "kdna_is_judgment_not_information"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}

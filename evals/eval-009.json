@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_009",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "Does Always be user-centered belong in a KDNA?",
+  "expected_classification": "slogan_axiom",
+  "expected_axioms": [
+    "every_axiom_must_change_behavior"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}

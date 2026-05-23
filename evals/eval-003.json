@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_003",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "Is Trust is important a good axiom?",
+  "expected_classification": "decorative_axiom",
+  "expected_axioms": [
+    "every_axiom_must_change_behavior"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}

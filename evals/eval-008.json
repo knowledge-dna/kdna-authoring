@@ -1,0 +1,10 @@
+{
+  "id": "eval_kdna_authoring_008",
+  "domain": "@aikdna/kdna_authoring",
+  "input": "My KDNA has 20 axioms. Is that too many?",
+  "expected_classification": "quantity_vs_quality",
+  "expected_axioms": [
+    "every_axiom_must_change_behavior"
+  ],
+  "output_rubric": "Agent should classify correctly and apply the right axiom."
+}
