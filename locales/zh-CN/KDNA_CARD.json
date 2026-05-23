@@ -1,15 +1,1 @@
-{
-  "locale": "zh-CN",
-  "base": "en",
-  "name": "@aikdna/kdna_authoring",
-  "display_name": "KDNA 创作判断",
-  "summary": "元认知——教 Agent 如何通过访谈优先的创作方式和质量审核来编写高质量 KDNA。",
-  "intended_use": ["指导 KDNA 创作流程", "评估领域质量", "检测创作中的常见误区"],
-  "out_of_scope": ["自动生成 KDNA 内容", "替代人类判断", "KDNA 格式验证"],
-  "known_limitations": ["当前处于实验阶段", "需要配合 Studio Core 使用"],
-  "risk_warnings": ["AI 可以提出判断候选，但不能替人确认判断"],
-  "human_lock_summary": { "locked_by": "KDNA Team" },
-  "quality_badge": "untested",
-  "review_status": "community",
-  "license": "CC-BY-4.0"
-}
+{"locale":"zh-CN","base":"en","name":"@aikdna/kdna_authoring","display_name":"KDNA 创作判断","summary":"元认知——教 Agent 如何通过访谈优先的创作方式和质量审核来编写高质量 KDNA。","intended_use":["指导 KDNA 创作流程","评估领域质量","检测创作中的常见误区"],"out_of_scope":["自动生成 KDNA 内容","替代人类判断"],"known_limitations":["当前处于实验阶段","需要配合 Studio Core 使用"],"quality_badge":"untested","review_status":"community","license":"CC-BY-4.0"}
