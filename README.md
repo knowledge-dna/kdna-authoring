@@ -2,7 +2,7 @@
 
 # kdna-authoring
 
-[![KDNA Spec](https://img.shields.io/badge/KDNA-v1.0--rc-4c1)](https://github.com/knowledge-dna/KDNA)
+[![KDNA Spec](https://img.shields.io/badge/KDNA-v1.0--rc-4c1)](https://github.com/aikdna/KDNA)
 
 **Kdna Authoring** — Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.
 
@@ -23,7 +23,7 @@ KDNA encodes judgment, not information. Every axiom must change interpretation. 
 ### 4. How do I use it?
 
 ```bash
-kdna install github:knowledge-dna/kdna-authoring
+kdna install github:aikdna/kdna-authoring
 kdna validate .
 ```
 
