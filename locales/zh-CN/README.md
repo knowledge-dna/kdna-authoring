@@ -18,4 +18,4 @@
 - 替代人类判断
 - KDNA 格式验证
 
-详见英文原版：[README.md](https://github.com/knowledge-dna/kdna-authoring)
+详见英文原版：[README.md](https://github.com/aikdna/kdna-authoring)
