@@ -45,7 +45,7 @@ KDNA encodes judgment, not information. Every axiom must change interpretation. 
 
 ```bash
 kdna install @aikdna/authoring
-kdna validate .
+kdna dev validate .
 ```
 
 ## Files
