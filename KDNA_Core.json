@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "kdna_authoring",
+    "domain": "authoring",
     "created": "2026-05-20",
     "purpose": "Define the core judgment needed to help users transform expertise into valid, high-quality KDNA domains. This is a meta-cognition domain \u2014 it teaches agents how to author KDNA, not what to put in a specific domain.",
     "load_condition": "Always load when an agent is helping a user create, revise, audit, or improve a KDNA domain. Load before kdna-create skill execution."

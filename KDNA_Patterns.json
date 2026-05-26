@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "kdna_authoring",
+    "domain": "authoring",
     "created": "2026-05-20",
     "purpose": "Define terminology, critical misunderstandings, and self-checks for the KDNA authoring process. This is the quality gate that prevents agents from producing hollow KDNA.",
     "load_condition": "Always load with KDNA_Core.json before authoring or auditing any KDNA domain."

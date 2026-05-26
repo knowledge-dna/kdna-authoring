@@ -1,6 +1,6 @@
 {
   "kdna_spec": "1.0-rc",
-  "name": "@aikdna/kdna_authoring",
+  "name": "@aikdna/authoring",
   "version": "0.7.5",
   "status": "experimental",
   "access": "open",
