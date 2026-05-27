@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "kdna_authoring",
+    "domain": "authoring",
     "created": "2026-05-20",
     "purpose": "Define the scenarios an agent encounters during KDNA authoring and how its strategy should shift for each.",
     "load_condition": "Load when the agent detects a concrete authoring scenario \u2014 a specific type of source material or starting point the user brings."

@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "kdna_authoring",
+    "domain": "authoring",
     "created": "2026-05-20",
     "purpose": "Reasoning chains explaining why each KDNA authoring principle is necessary \u2014 the 'why' behind the axioms.",
     "load_condition": "Load when the user or agent asks why a particular authoring rule exists, or needs rationale to explain a quality decision."

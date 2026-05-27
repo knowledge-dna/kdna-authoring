@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "kdna_authoring",
+    "domain": "authoring",
     "created": "2026-05-20",
     "purpose": "Capability stages for KDNA authoring \u2014 from template filler to domain architect. Used to guide agent and user growth in authoring skill.",
     "load_condition": "Load when the user or agent asks about improving KDNA authoring skills, or when evaluating an authoring session's maturity level."
