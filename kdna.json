@@ -1,10 +1,26 @@
 {
-  "kdna_spec": "1.0-rc",
-  "name": "@aikdna/authoring",
-  "version": "0.7.5",
+  "format": "kdna",
+  "format_version": "1.0",
+  "spec_version": "1.0-rc",
+  "name": "@aikdna/kdna_authoring",
+  "version": "0.7.6",
+  "asset_type": "domain_judgment",
   "status": "experimental",
   "access": "open",
-  "language": "en",
+  "privacy_level": "public",
+  "media_type": "application/vnd.aikdna.kdna+zip",
+  "created": "2026-05-20",
+  "updated": "2026-05-29",
+  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.",
+  "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
+  "keywords": [
+    "kdna",
+    "authoring",
+    "meta-cognition",
+    "quality",
+    "interview",
+    "domain creation"
+  ],
   "author": {
     "name": "KDNA Team",
     "id": "kdna-team",
@@ -14,21 +30,11 @@
   "license": {
     "type": "CC-BY-4.0"
   },
-  "keywords": [
-    "kdna",
-    "authoring",
-    "meta-cognition",
-    "quality",
-    "interview",
-    "domain creation"
-  ],
-  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.",
-  "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
+  "registry": {
+    "repo": "https://github.com/aikdna/kdna-authoring"
+  },
   "file_count": 6,
-  "created": "2026-05-20",
-  "updated": "2026-05-20",
   "judgment_version": "2026.05",
-  "signature": "ed25519:1bf5f9a370a5f2fc518985ceffc3651fb02ae762cd03274b951fc995ca18f67b8d05be593c75f70504e7fe6b17d2405fb00ad2e5706fda338073b2aaebe8aa06",
   "quality_badge": "tested",
   "languages": [
     "en",
@@ -36,5 +42,31 @@
   ],
   "default_language": "en",
   "i18n_level": "L2",
-  "risk_level": "R0"
+  "risk_level": "R0",
+  "fitness_for_purpose": {
+    "intended_use": [
+      "KDNA domain authoring",
+      "KDNA quality audit",
+      "expert interview extraction",
+      "judgment-asset review before publication"
+    ],
+    "not_for": [
+      "general knowledge base creation",
+      "generic prompt engineering",
+      "fully automated expert replacement",
+      "procedural skill documentation"
+    ],
+    "requires_human_review_when": [
+      "publishing under an official or trusted scope",
+      "extracting professional or regulated-domain expertise",
+      "claims affect safety, legal, medical, financial, or reputational outcomes"
+    ],
+    "known_failure_modes": [
+      "generating generic JSON from a topic name",
+      "accepting hollow KDNA that passes schema validation but does not change behavior",
+      "mistaking procedures, manuals, or prompts for judgment assets"
+    ]
+  },
+  "content_digest": "sha256:49122d6c99aa8330ed4299046adfd4c55a32896caa4749c0417ea9fc5f3acf72",
+  "signature": "ed25519:d39e9a53cb55a5b3240adda97119cfa16c205e26dc7a8042d9059f569766b0f5efb5a1f599f25943c7d5c74cb298fa01e4531fc2a847cb221bb0db3f790f020f"
 }
