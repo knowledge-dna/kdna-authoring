@@ -1,9 +1,9 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "authoring",
+    "domain": "kdna_authoring",
     "created": "2026-05-20",
-    "purpose": "Reasoning chains explaining why each KDNA authoring principle is necessary \u2014 the 'why' behind the axioms.",
+    "purpose": "Reasoning chains explaining why each KDNA authoring principle is necessary — the 'why' behind the axioms.",
     "load_condition": "Load when the user or agent asks why a particular authoring rule exists, or needs rationale to explain a quality decision."
   },
   "reasoning_chains": [
@@ -11,9 +11,9 @@
       "id": "chain_interview_before_generation",
       "one_sentence": "Skipping the interview step produces KDNA that looks correct but encodes zero expert judgment.",
       "logic": [
-        "When an agent generates KDNA from a topic name, it fills fields using its training data \u2014 which contains general knowledge about the topic, not specific expert distinctions.",
-        "General knowledge produces axioms like 'Communication is key' and misunderstandings like 'Communication does not matter' \u2014 these are plausible-sounding but behaviorally empty.",
-        "A user reviewing such output may accept it because it 'sounds right' \u2014 creating false confidence that expertise has been encoded when it has not.",
+        "When an agent generates KDNA from a topic name, it fills fields using its training data — which contains general knowledge about the topic, not specific expert distinctions.",
+        "General knowledge produces axioms like 'Communication is key' and misunderstandings like 'Communication does not matter' — these are plausible-sounding but behaviorally empty.",
+        "A user reviewing such output may accept it because it 'sounds right' — creating false confidence that expertise has been encoded when it has not.",
         "Expert distinctions can only come from the expert. The agent's role is extraction (through contrast-seeking questions), not generation (from topic inference)."
       ],
       "so_what": "Every KDNA authoring session must begin with an interview. The agent must not draft any file until at least three specific expert distinctions have been extracted."
@@ -22,30 +22,30 @@
       "id": "chain_misunderstandings_are_the_highest_leverage_content",
       "one_sentence": "Preventing wrong interpretation is more behaviorally impactful than providing correct information.",
       "logic": [
-        "A generic model, when facing an ambiguous input, defaults to the most common interpretation \u2014 which in specialized domains is often wrong.",
+        "A generic model, when facing an ambiguous input, defaults to the most common interpretation — which in specialized domains is often wrong.",
         "Providing correct definitions helps the agent understand the domain but does not actively prevent the most common wrong interpretation.",
         "A misunderstanding entry with 'wrong: X, correct: Y, key distinction: Z' directly intercepts the default wrong interpretation and replaces it with the correct frame.",
-        "This is why misunderstandings produce larger behavioral changes than ontology concepts \u2014 they target the specific interpretation error the agent is likely to make."
+        "This is why misunderstandings produce larger behavioral changes than ontology concepts — they target the specific interpretation error the agent is likely to make."
       ],
       "so_what": "Prioritize misunderstanding extraction during the interview. Every important concept should have a corresponding misunderstanding entry. If the user cannot identify what people commonly get wrong about a concept, the concept may not need to be in the domain."
     },
     {
       "id": "chain_cases_must_show_structure_not_stories",
-      "one_sentence": "A case without an explicit structural pattern cannot be reused \u2014 it is a story, not a judgment template.",
+      "one_sentence": "A case without an explicit structural pattern cannot be reused — it is a story, not a judgment template.",
       "logic": [
-        "Stories contain implicit judgment \u2014 the reader infers the lesson from the narrative. Different readers extract different lessons.",
+        "Stories contain implicit judgment — the reader infers the lesson from the narrative. Different readers extract different lessons.",
         "A KDNA case must make the judgment pattern explicit: what signal was present, what misinterpretation was possible, what correct frame was applied, what action followed.",
-        "This explicit structure allows a loading agent to match new situations against the pattern \u2014 'does this new input contain a similar signal to case X?'",
-        "Without the structural_pattern field, the agent cannot pattern-match \u2014 the case becomes inert reference material rather than an active judgment template."
+        "This explicit structure allows a loading agent to match new situations against the pattern — 'does this new input contain a similar signal to case X?'",
+        "Without the structural_pattern field, the agent cannot pattern-match — the case becomes inert reference material rather than an active judgment template."
       ],
-      "so_what": "Every KDNA case must include a structural_pattern field. Audit existing cases: if you cannot extract the signal \u2192 misread \u2192 correct frame \u2192 action chain, the case is a story, not a case."
+      "so_what": "Every KDNA case must include a structural_pattern field. Audit existing cases: if you cannot extract the signal → misread → correct frame → action chain, the case is a story, not a case."
     },
     {
       "id": "chain_narrow_domains_are_sharper_than_broad_ones",
       "one_sentence": "A domain focused on one specific judgment gap produces more behavior change than a domain covering an entire profession.",
       "logic": [
-        "Broad domains ('sales', 'leadership', 'writing') force the author to write axioms that apply to everything in that field \u2014 which means they apply to nothing specific.",
-        "Narrow domains ('price objection diagnosis', 'first-time manager feedback', 'argument detection in drafts') force the author to write axioms that apply to specific situations \u2014 which means they actually change behavior in those situations.",
+        "Broad domains ('sales', 'leadership', 'writing') force the author to write axioms that apply to everything in that field — which means they apply to nothing specific.",
+        "Narrow domains ('price objection diagnosis', 'first-time manager feedback', 'argument detection in drafts') force the author to write axioms that apply to specific situations — which means they actually change behavior in those situations.",
         "A broad domain with 20 generic axioms produces less behavioral change than a narrow domain with 4 specific axioms.",
         "Narrow domains can be composed into clusters (via KDNA_Cluster.json) to cover broader areas without losing specificity."
       ],

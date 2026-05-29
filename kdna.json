@@ -3,7 +3,7 @@
   "format_version": "1.0",
   "spec_version": "1.0-rc",
   "name": "@aikdna/kdna_authoring",
-  "version": "0.7.6",
+  "version": "0.7.7",
   "asset_type": "domain_judgment",
   "status": "experimental",
   "access": "open",
@@ -67,6 +67,6 @@
       "mistaking procedures, manuals, or prompts for judgment assets"
     ]
   },
-  "content_digest": "sha256:49122d6c99aa8330ed4299046adfd4c55a32896caa4749c0417ea9fc5f3acf72",
-  "signature": "ed25519:d39e9a53cb55a5b3240adda97119cfa16c205e26dc7a8042d9059f569766b0f5efb5a1f599f25943c7d5c74cb298fa01e4531fc2a847cb221bb0db3f790f020f"
+  "content_digest": "sha256:1c6dd34b0c2615746ebd06254e356b7df1baf74b014a2bcec5f71382622eb201",
+  "signature": "ed25519:372182b63064cd637719cb7c4d32fe262620feb64ecb0f4c20f6953d9ed35fc38fff64f6eed17d764d093e2004392f88835cf2ded15a1876df686b4e162fdf08"
 }

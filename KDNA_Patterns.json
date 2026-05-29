@@ -1,7 +1,7 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "authoring",
+    "domain": "kdna_authoring",
     "created": "2026-05-20",
     "purpose": "Define terminology, critical misunderstandings, and self-checks for the KDNA authoring process. This is the quality gate that prevents agents from producing hollow KDNA.",
     "load_condition": "Always load with KDNA_Core.json before authoring or auditing any KDNA domain."
@@ -10,11 +10,11 @@
     "standard_terms": [
       {
         "term": "expert distinction",
-        "definition": "A specific perceptual or diagnostic difference an expert sees between two situations that appear similar to others \u2014 the raw material of axioms and misunderstandings."
+        "definition": "A specific perceptual or diagnostic difference an expert sees between two situations that appear similar to others — the raw material of axioms and misunderstandings."
       },
       {
         "term": "hollow KDNA",
-        "definition": "A domain that passes structural validation (kdna-lint, kdna-validate) but whose axioms, misunderstandings, and self-checks do not change agent behavior \u2014 filled with slogans, straw men, and generic checks."
+        "definition": "A domain that passes structural validation (kdna-lint, kdna-validate) but whose axioms, misunderstandings, and self-checks do not change agent behavior — filled with slogans, straw men, and generic checks."
       },
       {
         "term": "contrast-seeking question",
@@ -22,22 +22,22 @@
       },
       {
         "term": "behavioral validation",
-        "definition": "Testing whether loading a KDNA domain actually changes the agent's diagnostic output on a real scenario \u2014 as opposed to structural validation which only checks JSON compliance."
+        "definition": "Testing whether loading a KDNA domain actually changes the agent's diagnostic output on a real scenario — as opposed to structural validation which only checks JSON compliance."
       },
       {
         "term": "interview-first authoring",
-        "definition": "The process of extracting expert distinctions through targeted questions before drafting any KDNA JSON \u2014 the opposite of generating KDNA from a topic name or vague description."
+        "definition": "The process of extracting expert distinctions through targeted questions before drafting any KDNA JSON — the opposite of generating KDNA from a topic name or vague description."
       }
     ],
     "banned_terms": [
       {
         "term": "generate a KDNA",
-        "why": "It implies the agent can produce a quality domain by itself from a topic name. This is the root cause of hollow KDNA \u2014 the agent fills JSON fields with plausible-sounding but behaviorally empty content.",
+        "why": "It implies the agent can produce a quality domain by itself from a topic name. This is the root cause of hollow KDNA — the agent fills JSON fields with plausible-sounding but behaviorally empty content.",
         "replace_with": "extract expert distinctions through interview, then draft KDNA files based on those distinctions"
       },
       {
         "term": "best practices",
-        "why": "In KDNA authoring, 'best practices' is a red flag \u2014 it usually means generic advice that doesn't encode any specific expert judgment. If the user says 'best practices,' the agent must ask: 'What is the most common way people MISAPPLY that practice?'",
+        "why": "In KDNA authoring, 'best practices' is a red flag — it usually means generic advice that doesn't encode any specific expert judgment. If the user says 'best practices,' the agent must ask: 'What is the most common way people MISAPPLY that practice?'",
         "replace_with": "specific expert distinctions: what the expert checks that others miss, what false assumption leads to wrong action"
       },
       {
@@ -48,11 +48,11 @@
       {
         "term": "comprehensive",
         "why": "KDNA domains should be narrow and sharp, not comprehensive. Trying to encode an entire profession produces bloated, unfocused domains. 'Comprehensive' is a signal that the domain scope is too broad.",
-        "replace_with": "focused \u2014 name the specific judgment gap this domain fills and what it intentionally excludes"
+        "replace_with": "focused — name the specific judgment gap this domain fills and what it intentionally excludes"
       },
       {
         "term": "it depends",
-        "why": "When the user says 'it depends' in response to a contrast-seeking question, they have identified exactly the right territory for a KDNA axiom or scenario signal \u2014 'it depends on what?' is the next question.",
+        "why": "When the user says 'it depends' in response to a contrast-seeking question, they have identified exactly the right territory for a KDNA axiom or scenario signal — 'it depends on what?' is the next question.",
         "replace_with": "ask: 'it depends on what specifically? That dependency IS the judgment structure we need to encode.'"
       }
     ]
@@ -63,7 +63,7 @@
       "wrong": "KDNA is a structured way to write better system prompts for AI agents.",
       "correct": "Prompts control expression and immediate instruction. KDNA changes how the agent interprets ambiguous inputs before deciding what to say. A prompt tells the agent 'respond as an expert.' KDNA tells the agent 'here is what experts actually check that novices miss.' The difference is: prompt shapes output, KDNA shapes interpretation.",
       "key_distinction": "Prompt = expression layer. KDNA = judgment layer. Adding a role to a prompt does not encode domain-specific interpretation rules. It only changes tone and vocabulary.",
-      "why": "This is the most common category error in KDNA authoring. Users and agents alike default to treating KDNA as a prompt template, which produces domains full of role descriptions, tone guidelines, and output format instructions \u2014 none of which change interpretation.",
+      "why": "This is the most common category error in KDNA authoring. Users and agents alike default to treating KDNA as a prompt template, which produces domains full of role descriptions, tone guidelines, and output format instructions — none of which change interpretation.",
       "applies_when": [
         "When defining how an agent should weigh conflicting signals in a client email",
         "When specifying what subtle cues indicate a high-risk transaction",
@@ -84,9 +84,9 @@
     {
       "id": "misread_kdna_is_knowledge_base",
       "wrong": "KDNA is a way to store domain knowledge so agents can reference it when needed.",
-      "correct": "Knowledge bases store facts, references, and reference material. KDNA stores judgment structures: how to interpret a situation, what signals to prioritize, what common misinterpretations to avoid, what framework to apply. Knowledge answers 'what is X.' KDNA answers 'given these signals, is this situation X or Y \u2014 and what should I do differently?'",
+      "correct": "Knowledge bases store facts, references, and reference material. KDNA stores judgment structures: how to interpret a situation, what signals to prioritize, what common misinterpretations to avoid, what framework to apply. Knowledge answers 'what is X.' KDNA answers 'given these signals, is this situation X or Y — and what should I do differently?'",
       "key_distinction": "Knowledge = retrievable facts. KDNA = loadable interpretation rules. RAG retrieves knowledge. KDNA applies judgment.",
-      "why": "Agents naturally treat all structured content as knowledge to be retrieved. This produces KDNA domains that are essentially formatted documentation \u2014 they describe the domain but do not change how the agent interprets inputs within it.",
+      "why": "Agents naturally treat all structured content as knowledge to be retrieved. This produces KDNA domains that are essentially formatted documentation — they describe the domain but do not change how the agent interprets inputs within it.",
       "applies_when": [
         "When teaching an agent to distinguish between a routine compliance query and a potential escalation based on wording",
         "When encoding thresholds for when to flag ambiguity versus when to proceed with standard advice",
@@ -108,8 +108,8 @@
       "id": "misread_more_content_means_better_kdna",
       "wrong": "A KDNA domain with more axioms, more concepts, more cases, and more self-checks is better than one with fewer.",
       "correct": "KDNA quality is measured by behavioral impact per axiom, not axiom count. Four axioms that each demonstrably change agent interpretation on real scenarios are better than twenty axioms that are all variations of 'be professional.' Content volume without behavioral validation is hollow.",
-      "key_distinction": "Quantity of content \u2260 quality of judgment. Each axiom must pass the behavior-change test independently.",
-      "why": "The content-volume fallacy is reinforced by structural validation \u2014 kdna-lint only checks whether fields exist, not whether they are behaviorally meaningful. Agents must apply quality audits beyond structural checks.",
+      "key_distinction": "Quantity of content ≠ quality of judgment. Each axiom must pass the behavior-change test independently.",
+      "why": "The content-volume fallacy is reinforced by structural validation — kdna-lint only checks whether fields exist, not whether they are behaviorally meaningful. Agents must apply quality audits beyond structural checks.",
       "applies_when": [
         "When trimming a domain draft from thirty axioms to five that each alter agent routing on test scenarios",
         "When replacing generic safety instructions with specific trigger-condition and action pairs",
@@ -130,7 +130,7 @@
     {
       "id": "misread_any_expert_can_write_kdna_directly",
       "wrong": "Domain experts can and should write KDNA JSON files themselves.",
-      "correct": "Domain experts have judgment but rarely understand the KDNA file structure. The agent's role is to interview the expert, extract their distinctions, and structure them into KDNA files. The expert reviews and corrects the content \u2014 they should never be asked to write JSON from scratch.",
+      "correct": "Domain experts have judgment but rarely understand the KDNA file structure. The agent's role is to interview the expert, extract their distinctions, and structure them into KDNA files. The expert reviews and corrects the content — they should never be asked to write JSON from scratch.",
       "key_distinction": "Expert role = provide distinctions, review accuracy, confirm behavioral impact. Agent role = structure content, map to KDNA fields, validate format. These are separate skills.",
       "why": "Asking experts to fill in JSON fields produces frustration and poor results. The interview-first model separates the expert's judgment contribution from the agent's structuring capability.",
       "applies_when": [
@@ -153,9 +153,9 @@
     {
       "id": "misread_cases_are_success_stories",
       "wrong": "KDNA cases should describe successful applications of the domain's principles.",
-      "correct": "KDNA cases must expose the judgment structure: what signal was present, what misinterpretation was possible, what correct frame was applied, and what action followed. A success story without these elements is narrative, not a reusable case. Cases can also be failures \u2014 showing where the domain's axioms would have prevented a wrong decision.",
-      "key_distinction": "Success story = narrative about outcome. Judgment case = structural template exposing signal \u2192 misread \u2192 correct frame \u2192 action implication.",
-      "why": "Agents default to writing narrative cases because they are easier to generate. But narrative cases cannot be reused by another agent \u2014 the judgment structure is implicit. Explicit structure is what makes a case reusable.",
+      "correct": "KDNA cases must expose the judgment structure: what signal was present, what misinterpretation was possible, what correct frame was applied, and what action followed. A success story without these elements is narrative, not a reusable case. Cases can also be failures — showing where the domain's axioms would have prevented a wrong decision.",
+      "key_distinction": "Success story = narrative about outcome. Judgment case = structural template exposing signal → misread → correct frame → action implication.",
+      "why": "Agents default to writing narrative cases because they are easier to generate. But narrative cases cannot be reused by another agent — the judgment structure is implicit. Explicit structure is what makes a case reusable.",
       "applies_when": [
         "Generating training scenarios for a judgment-augmented AI system that must learn to parse decision signals",
         "Curating domain post-mortems or decision audits to extract reusable reasoning templates",
@@ -181,6 +181,6 @@
     "Does each banned term's 'why' explain the specific judgment error it causes?",
     "Is each self-check yes/no answerable and specific to this domain?",
     "Would loading this domain produce a different answer than not loading it on a test scenario?",
-    "Did I avoid generating content from the topic name alone \u2014 is there genuine expert input behind each axiom?"
+    "Did I avoid generating content from the topic name alone — is there genuine expert input behind each axiom?"
   ]
 }

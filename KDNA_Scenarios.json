@@ -1,10 +1,10 @@
 {
   "meta": {
     "version": "1.0-rc",
-    "domain": "authoring",
+    "domain": "kdna_authoring",
     "created": "2026-05-20",
     "purpose": "Define the scenarios an agent encounters during KDNA authoring and how its strategy should shift for each.",
-    "load_condition": "Load when the agent detects a concrete authoring scenario \u2014 a specific type of source material or starting point the user brings."
+    "load_condition": "Load when the agent detects a concrete authoring scenario — a specific type of source material or starting point the user brings."
   },
   "scenes": [
     {
@@ -17,7 +17,7 @@
           "trap_belief": "The agent should synthesize the stories into general principles.",
           "three_questions": {
             "belief": "What does the expert notice in these stories that a beginner would miss?",
-            "state": "Stories contain implicit judgment. The agent's task is to make the judgment explicit \u2014 not to summarize the plot.",
+            "state": "Stories contain implicit judgment. The agent's task is to make the judgment explicit — not to summarize the plot.",
             "need": "Contrast-seeking questions that surface the diagnostic differences embedded in the stories."
           },
           "action_template": [
@@ -29,7 +29,7 @@
           "replace": [
             {
               "avoid": "Summarizing the stories into generic lessons",
-              "use": "Extracting the specific diagnostic distinction in each story \u2014 what was seen, what was missed, what changed the call"
+              "use": "Extracting the specific diagnostic distinction in each story — what was seen, what was missed, what changed the call"
             },
             {
               "avoid": "Generating axioms that sound wise but apply to any domain",
@@ -50,8 +50,8 @@
           "trap_belief": "The framework's steps should be encoded as KDNA frameworks.",
           "three_questions": {
             "belief": "What judgment happens BEFORE step one that determines whether this framework even applies?",
-            "state": "Frameworks are often procedural. KDNA needs the judgment that precedes the procedure \u2014 when to use this framework vs another, what signals indicate the framework is appropriate, what common situations the framework does NOT handle.",
-            "need": "Extract the judgment layer from the framework \u2014 the diagnostic decisions the expert makes before and between the framework's steps."
+            "state": "Frameworks are often procedural. KDNA needs the judgment that precedes the procedure — when to use this framework vs another, what signals indicate the framework is appropriate, what common situations the framework does NOT handle.",
+            "need": "Extract the judgment layer from the framework — the diagnostic decisions the expert makes before and between the framework's steps."
           },
           "action_template": [
             "Identify the framework's steps. These are procedure, not judgment.",
@@ -69,7 +69,7 @@
               "use": "Asking the expert about situations where the methodology failed or needed modification"
             }
           ],
-          "expected_result": "The KDNA domain captures the expert's diagnostic skill \u2014 not their process \u2014 making it applicable in novel situations, not just familiar ones."
+          "expected_result": "The KDNA domain captures the expert's diagnostic skill — not their process — making it applicable in novel situations, not just familiar ones."
         }
       ]
     },
@@ -82,27 +82,27 @@
           "id": "sub_distill_judgment_not_summarize",
           "trap_belief": "The agent should summarize the key points of the document into KDNA axioms.",
           "three_questions": {
-            "belief": "What in this document would change HOW an agent interprets a situation \u2014 not just what it knows?",
+            "belief": "What in this document would change HOW an agent interprets a situation — not just what it knows?",
             "state": "Long documents contain knowledge, explanations, and examples. Most of this is not judgment. The agent must filter: what is fact, what is procedure, what is opinion, and what is judgment structure?",
             "need": "A filter that separates information content from judgment content."
           },
           "action_template": [
             "Scan the document for sentences that express a diagnostic distinction: 'X is often mistaken for Y,' 'the real question is not Z but W,' 'beginners focus on A when they should check B.'",
             "Extract these as candidate axioms, misunderstandings, or scenario signals.",
-            "Do NOT convert explanatory paragraphs into axioms \u2014 explanation is knowledge, not judgment.",
+            "Do NOT convert explanatory paragraphs into axioms — explanation is knowledge, not judgment.",
             "If the document contains little judgment content, tell the user: this material is knowledge, not judgment. An interview is needed to extract the judgment layer."
           ],
           "replace": [
             {
               "avoid": "Summarizing each chapter into an axiom",
-              "use": "Extracting only the diagnostic distinctions \u2014 sentences that encode how to interpret, not what to know"
+              "use": "Extracting only the diagnostic distinctions — sentences that encode how to interpret, not what to know"
             },
             {
               "avoid": "Generating a KDNA from purely expository material",
               "use": "Flagging that the material is knowledge, not judgment, and recommending an interview"
             }
           ],
-          "expected_result": "The resulting KDNA contains only judgment structures extracted from the document \u2014 not a reformatted version of the document."
+          "expected_result": "The resulting KDNA contains only judgment structures extracted from the document — not a reformatted version of the document."
         }
       ]
     },
@@ -125,7 +125,7 @@
             "For each misunderstanding: assess whether a real non-expert agent would hold this belief. If not, flag as straw man.",
             "For each banned term: check that the 'why' explains a specific judgment error.",
             "Report: X of Y axioms pass the behavior-change test. Z misunderstandings are real agent beliefs.",
-            "Recommend specific replacements for hollow content \u2014 do not just flag."
+            "Recommend specific replacements for hollow content — do not just flag."
           ],
           "replace": [
             {
@@ -152,7 +152,7 @@
           "three_questions": {
             "belief": "What does the skillful practitioner NOTICE before executing step one that determines the rest of the procedure?",
             "state": "Skills encode repeatable workflows. KDNA encodes the judgment that determines when and how to apply those workflows. The boundary: Skills = execution. KDNA = interpretation.",
-            "need": "Extract the diagnostic preconditions \u2014 what the agent must judge before the skill's procedure is appropriate."
+            "need": "Extract the diagnostic preconditions — what the agent must judge before the skill's procedure is appropriate."
           },
           "action_template": [
             "Identify what the skill does (procedure).",
@@ -164,11 +164,11 @@
           "replace": [
             {
               "avoid": "Encoding skill steps as KDNA axioms",
-              "use": "Extracting the diagnostic judgment that precedes the skill \u2014 what must be true before the skill should run"
+              "use": "Extracting the diagnostic judgment that precedes the skill — what must be true before the skill should run"
             },
             {
               "avoid": "Converting the entire skill workflow into a KDNA domain",
-              "use": "Extracting only the judgment layer \u2014 skills encode workflow, KDNA encodes interpretation"
+              "use": "Extracting only the judgment layer — skills encode workflow, KDNA encodes interpretation"
             }
           ],
           "expected_result": "The KDNA domain captures the diagnostic thinking behind the skill, while the skill continues to handle execution. Skills execute, KDNA judges."
