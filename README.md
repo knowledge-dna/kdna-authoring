@@ -11,28 +11,42 @@
 **Before loading this KDNA, an agent tends to:**
 - Treat domain authoring as information gathering
 - Add general knowledge without extracting expert distinctions
+- Default to interview-only authoring even when the user has rich existing content to work from
+- Confuse content summarization with judgment extraction
 
 **After loading this KDNA, an agent will judge:**
 - Is this encoding judgment, not information?
 - Does every axiom change interpretation?
-- Are expert distinctions extracted through interview the only valid raw material?
-- Is the domain following interview-first authoring?
+- Is the right authoring path being used — interview-first when the user can articulate their judgment, distillation-first when the user has existing content that encodes their judgment?
+- Are judgment candidates being presented for human confirmation before entering .kdna?
+- Is source content being kept separate from the resulting KDNA?
 
 ## This KDNA is for
 
 - Helping users create, revise, audit, or improve a KDNA domain
-- Interview-first authoring workflows
-- Quality auditing and distinction extraction
+- Interview-first authoring: extracting expert distinctions through targeted dialogue
+- Distillation-first authoring: analyzing existing content to identify stable judgment patterns
+- Quality auditing and hollow KDNA detection
+- Judgment Candidate → Human Lock → .kdna workflow enforcement
 
 ## This KDNA is not for
 
 - General knowledge base creation
 - Prompt engineering
 - Domain content that is not KDNA-structured
+- Auto-generating KDNA from content without human confirmation
+- Content summarization (RAG) in KDNA format
 
 ## Core judgment
 
-KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.
+KDNA encodes judgment, not information. Every axiom must change interpretation. There are two valid paths: interview-first (the expert speaks) and distillation-first (judgment extracted from existing content). Both must end with Human Judgment Lock. AI proposes candidates; only humans confirm. Content is raw material — .kdna carries only confirmed judgment.
+
+## Authoring paths
+
+| Path | When to use | Process |
+|------|------------|---------|
+| **Interview-first** | Expert can articulate their judgment distinctions | Contrast-seeking questions → expert distinctions → draft → audit → lock |
+| **Distillation-first** | Expert has rich existing content but cannot easily describe their standards | Import content → register evidence → cluster & extract patterns → present candidates → human confirmation → lock → compile |
 
 ## Self-checks
 

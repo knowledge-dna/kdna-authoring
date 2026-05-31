@@ -3,7 +3,7 @@
     "version": "1.0-rc",
     "domain": "kdna_authoring",
     "created": "2026-05-20",
-    "purpose": "Define terminology, critical misunderstandings, and self-checks for the KDNA authoring process. This is the quality gate that prevents agents from producing hollow KDNA.",
+    "purpose": "Define terminology, critical misunderstandings, and self-checks for the KDNA authoring process. This is the quality gate that prevents agents from producing hollow KDNA. Covers both interview-first and distillation-first authoring paths.",
     "load_condition": "Always load with KDNA_Core.json before authoring or auditing any KDNA domain."
   },
   "terminology": {
@@ -27,6 +27,26 @@
       {
         "term": "interview-first authoring",
         "definition": "The process of extracting expert distinctions through targeted questions before drafting any KDNA JSON — the opposite of generating KDNA from a topic name or vague description."
+      },
+      {
+        "term": "distillation-first authoring",
+        "definition": "The process of analyzing a user's existing content (notes, documents, works, feedback, revision history) to identify stable judgment patterns, presenting them as candidates for human confirmation, and only writing confirmed patterns into formal KDNA. The output is judgment candidates, not auto-generated KDNA."
+      },
+      {
+        "term": "judgment candidate",
+        "definition": "A proposed judgment element (potential axiom, boundary, standard, or preference) extracted by AI from source content — it has candidate_status: proposed until the user explicitly confirms, rejects, or modifies it. Candidates must never be written into formal KDNA files without confirmation."
+      },
+      {
+        "term": "source evidence",
+        "definition": "Content provided by the user as raw material for distillation — notes, documents, works, feedback. Evidence is recorded for provenance (source hash, import timestamp) but is never embedded in the resulting .kdna file."
+      },
+      {
+        "term": "Judgment Card",
+        "definition": "A confirmed and Human-Locked judgment element ready for compilation into KDNA_Core.json, KDNA_Patterns.json, or other domain files. Judgment Cards are the transition from candidate to asset. Once locked, they can be compiled into formal KDNA."
+      },
+      {
+        "term": "provenance receipt",
+        "definition": "A separate record (not part of .kdna domain files) documenting the source content hashes, distillation timestamp, AI model version, and user confirmation record that produced a distilled KDNA. Maintains traceability without embedding source content in the asset."
       }
     ],
     "banned_terms": [
@@ -54,6 +74,21 @@
         "term": "it depends",
         "why": "When the user says 'it depends' in response to a contrast-seeking question, they have identified exactly the right territory for a KDNA axiom or scenario signal — 'it depends on what?' is the next question.",
         "replace_with": "ask: 'it depends on what specifically? That dependency IS the judgment structure we need to encode.'"
+      },
+      {
+        "term": "summarize this content",
+        "why": "In KDNA authoring, summary is the enemy of judgment. 'Summarize this content' produces a compressed version of the input — a RAG output, not a KDNA domain. Judgment extraction asks: what principles does this content reveal about what the author considers good, what they reject, and where they draw boundaries? Summary flattens. Extraction sharpens.",
+        "replace_with": "extract recurring judgment patterns from this content: what stable principles, boundaries, and standards can be identified across these materials?"
+      },
+      {
+        "term": "auto-generate KDNA",
+        "why": "KDNA must never be auto-generated from content without human confirmation. This is the definitive boundary between KDNA and automated profiling. The phrase 'auto-generate' signals that the agent is about to bypass Human Judgment Lock and write inferences directly into .kdna.",
+        "replace_with": "analyze content → propose judgment candidates → present for human confirmation → compile confirmed candidates into KDNA"
+      },
+      {
+        "term": "build your KDNA from this",
+        "why": "Ambiguous: could mean 'analyze this and present candidates for your approval' (valid) or 'process this and produce a finished .kdna' (invalid). The phrase masks whether human confirmation is part of the pipeline. Must be explicit about the confirmation step.",
+        "replace_with": "analyze this content to identify judgment patterns, then let's review the candidates together before anything enters .kdna"
       }
     ]
   },
@@ -172,15 +207,87 @@
         "practice_pattern",
         "research_finding"
       ]
+    },
+    {
+      "id": "misread_distillation_is_content_summary",
+      "wrong": "Distilling judgment from content means summarizing what the content says into a shorter form.",
+      "correct": "Distillation extracts the judgment structures IMPLICIT in the content — not what the content says, but what judgment patterns it reveals about the author. A summary of 50 articles says 'this person writes about marketing.' A judgment extraction says 'this person consistently rejects urgency-based framing, prioritizes education over persuasion, considers reader trust more important than conversion rate, and treats data as context rather than proof.' The difference is: summary = what is written; judgment extraction = what standards the writing reveals.",
+      "key_distinction": "Summary compresses content. Distillation extracts the judgment framework embedded in the content. If the output could have been produced by summarizing the input, it's not KDNA — it's RAG in a .kdna wrapper.",
+      "why": "This is the most dangerous misunderstanding in distillation-first authoring. It produces KDNA that is essentially a compressed knowledge base — structurally valid, behaviorally inert. The agent must actively distinguish 'what the content contains' from 'what judgment the content reveals.'",
+      "applies_when": [
+        "User provides a large corpus and says 'can you turn this into KDNA?'",
+        "Agent must decide whether an extracted pattern is a content summary or a genuine judgment distinction",
+        "Quality auditing a distillation-produced KDNA to verify it changes agent behavior rather than just restating facts"
+      ],
+      "does_not_apply_when": [
+        "The user explicitly requests a content digest or executive summary — not KDNA authoring",
+        "Processing pure reference material where no judgment is embedded (e.g., API docs, phone directories)",
+        "The task is explicitly knowledge base construction, not judgment extraction"
+      ],
+      "failure_risk": "The agent will produce a summarized version of the user's content in .kdna format — a knowledge base with KDNA extensions — that retrieves facts but does not change how any agent interprets ambiguous inputs.",
+      "confidence": "high",
+      "evidence_type": [
+        "case_observation",
+        "design_principle"
+      ]
+    },
+    {
+      "id": "misread_more_content_means_more_judgment_to_extract",
+      "wrong": "The more content the user provides, the more judgment can be extracted — more is always better.",
+      "correct": "Content volume and judgment signal density are different things. 200 documents with consistent judgment reveal strong patterns. 10,000 documents with inconsistent, context-dependent decisions reveal noise, not judgment. The goal is not to process everything — it's to process enough to identify stable, recurring patterns. Beyond a threshold, more content adds noise, contradictions, and outdated preferences that weaken the distillation.",
+      "key_distinction": "Volume of content ≠ density of judgment signal. The distillation quality depends on pattern consistency, not corpus size.",
+      "why": "Agents default to 'process everything' which leads to extracting contradictory or outdated preference signals. A smaller, higher-quality corpus (e.g., 30-50 representative works) often produces better distillation than a massive, unfiltered dump.",
+      "applies_when": [
+        "User offers a very large corpus (thousands of files) and expects 'more data = better KDNA'",
+        "Agent notices that extracted patterns become less consistent as more content is processed",
+        "Prioritizing which subset of a large corpus to process for highest judgment signal density"
+      ],
+      "does_not_apply_when": [
+        "The corpus is small (under 50 items) — process everything",
+        "The user needs comprehensive coverage across a wide variety of sub-domains",
+        "Statistical significance requires a minimum corpus size for rare judgment patterns"
+      ],
+      "failure_risk": "The agent will process an unnecessarily large corpus, extracting contradictory or noise-level patterns that produce inconsistent, diluted KDNA — or will spend excessive resources on diminishing returns.",
+      "confidence": "medium",
+      "evidence_type": [
+        "practice_pattern",
+        "working_hypothesis"
+      ]
+    },
+    {
+      "id": "misread_distillation_is_one_shot",
+      "wrong": "Content can be processed once and KDNA generated — no iteration needed.",
+      "correct": "Distillation-first authoring is iterative. First pass: broad pattern extraction. User review: 'this is right, this is wrong, this is only true for client X.' Second pass: refine candidates based on feedback. Third pass: fill gaps — 'you seem to have standards about tone but not about structure — would you like to add those?' Each iteration sharpens the judgment asset. Like interview-first authoring, the process requires back-and-forth.",
+      "key_distinction": "One-shot processing produces rough candidates. Iterative refinement produces accurate KDNA. The quality difference is significant.",
+      "why": "The agent's first-pass pattern extraction is hypothesis generation, not KDNA production. Skipping iteration produces KDNA based on the agent's first interpretation of the content — which will contain errors, over-generalizations, and missed patterns that the user would catch in review.",
+      "applies_when": [
+        "First distillation pass is complete and candidates need refinement",
+        "User rejects several candidates — this is normal, not a failure; use the rejections to sharpen remaining candidates",
+        "Agent identifies potential gaps: 'your content shows preference patterns for A and B, but not C — would you like to discuss C?''"
+      ],
+      "does_not_apply_when": [
+        "The user explicitly says 'approve all candidates as-is' and the candidates have passed sensitive inference filter",
+        "The domain scope is narrow enough that first-pass accuracy is sufficient for the user's needs",
+        "The corpus is extremely focused and the user has pre-filtered it to representative examples"
+      ],
+      "failure_risk": "The agent will present first-pass candidates as final KDNA and skip user refinement, producing a judgment asset that partially reflects the user's actual standards — enough to feel plausible, wrong enough to produce incorrect agent behavior.",
+      "confidence": "high",
+      "evidence_type": [
+        "practice_pattern",
+        "case_observation"
+      ]
     }
   ],
   "self_check": [
-    "Did I interview the user with contrast-seeking questions before drafting any KDNA files?",
+    "Did I interview the user with contrast-seeking questions before drafting any KDNA files — OR did I properly register and analyze user-provided content through the distillation pipeline?",
     "Can each axiom change how an agent interprets at least one specific real scenario?",
     "Does each misunderstanding describe a belief a competent but non-expert agent might actually hold?",
     "Does each banned term's 'why' explain the specific judgment error it causes?",
     "Is each self-check yes/no answerable and specific to this domain?",
     "Would loading this domain produce a different answer than not loading it on a test scenario?",
-    "Did I avoid generating content from the topic name alone — is there genuine expert input behind each axiom?"
+    "Did I avoid generating content from the topic name alone — is there genuine expert input (interview) or content corpus (distillation) behind each axiom?",
+    "For distillation-first: did I clearly separate Evidence (source content), Candidate (AI-proposed judgment), and Judgment Card (human-confirmed) and ensure that only locked Cards entered the .kdna?",
+    "For distillation-first: did I filter out sensitive personal attributes — identity, health, politics, religion, finances, intimate relationships — before presenting candidates?",
+    "For distillation-first: did I verify that no raw source content was embedded in the .kdna domain files, and that provenance was recorded in a separate receipt?"
   ]
 }

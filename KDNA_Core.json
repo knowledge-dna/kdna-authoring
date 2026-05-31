@@ -3,7 +3,7 @@
     "version": "1.0-rc",
     "domain": "kdna_authoring",
     "created": "2026-05-20",
-    "purpose": "Define the core judgment needed to help users transform expertise into valid, high-quality KDNA domains. This is a meta-cognition domain — it teaches agents how to author KDNA, not what to put in a specific domain.",
+    "purpose": "Define the core judgment needed to help users transform expertise into valid, high-quality KDNA domains. This is a meta-cognition domain — it teaches agents how to author KDNA, not what to put in a specific domain. Supports two authoring paths: interview-first (expert self-expression) and distillation-first (refining judgment from existing content, notes, documents, works, and feedback).",
     "load_condition": "Always load when an agent is helping a user create, revise, audit, or improve a KDNA domain. Load before kdna-create skill execution."
   },
   "axioms": [
@@ -174,18 +174,18 @@
     },
     {
       "id": "axiom_authoring_is_interview_first_generation_second",
-      "one_sentence": "The agent must extract the user's lived distinctions through targeted questions before drafting any KDNA file.",
-      "full_statement": "Directly generating KDNA from a topic name or a vague description produces generic, knowledge-dump JSON that passes validation but fails behavioral testing. The agent must first interview the user: what do you see that others miss? When have you been wrong in this domain? What signal changes your next move? Only after extracting specific, contrast-based answers should the agent draft KDNA files.",
-      "why": "Interviews surface expert distinctions that cannot be inferred from topic labels. Skipping the interview step is the root cause of hollow KDNA domains.",
+      "one_sentence": "The agent must extract the user's lived distinctions through targeted questions before drafting any KDNA file — unless the user brings pre-existing content to be distilled.",
+      "full_statement": "Directly generating KDNA from a topic name or a vague description produces generic, knowledge-dump JSON that passes validation but fails behavioral testing. The agent must first interview the user: what do you see that others miss? When have you been wrong in this domain? What signal changes your next move? Only after extracting specific, contrast-based answers should the agent draft KDNA files. This is the primary path when the user is an active expert expressing their judgment. For the distillation-first path, see axiom_content_is_judgment_raw_material.",
+      "why": "Interviews surface expert distinctions that cannot be inferred from topic labels. Skipping both interview and distillation is the root cause of hollow KDNA domains.",
       "applies_when": [
-        "Initiating a KDNA authoring session for a highly specialized niche like surgical risk assessment or venture capital due diligence.",
-        "Structuring a multi-turn interview protocol that probes for specific past errors, counterintuitive signals, and expert heuristics.",
-        "Validating that extracted answers contain concrete contrast pairs before proceeding to JSON schema generation."
+        "Initiating a KDNA authoring session where the user is an expert who can articulate their judgment distinctions",
+        "Structuring a multi-turn interview protocol that probes for specific past errors, counterintuitive signals, and expert heuristics",
+        "Validating that extracted answers contain concrete contrast pairs before proceeding to JSON schema generation"
       ],
       "does_not_apply_when": [
-        "Rapidly prototyping a KDNA domain for a well-documented, low-complexity task like basic email formatting or standard data entry validation.",
-        "Automatically generating KDNA from existing, thoroughly vetted regulatory frameworks that already contain explicit exception clauses.",
-        "Maintaining KDNA domains where the subject matter is static, fully codified, and requires no expert intuition to apply correctly."
+        "The user brings a significant corpus of existing content (notes, documents, works, feedback) and wants judgment distilled from it — use distillation-first path instead",
+        "Rapidly prototyping a KDNA domain for a well-documented, low-complexity task like basic email formatting or standard data entry validation",
+        "Automatically generating KDNA from existing, thoroughly vetted regulatory frameworks that already contain explicit exception clauses"
       ],
       "failure_risk": "The system will generate hollow, schema-compliant JSON populated with generic best practices that collapse under behavioral testing on real-world ambiguous inputs.",
       "confidence": "high",
@@ -198,6 +198,171 @@
         "by": "KDNA Team",
         "at": "2026-05-29",
         "statement": "Reviewed and locked for official kdna_authoring asset release. Applies_when, does_not_apply_when, and failure_risk are intentional judgment boundaries.",
+        "checked": {
+          "applies_when": true,
+          "does_not_apply_when": true,
+          "failure_risk": true
+        }
+      }
+    },
+    {
+      "id": "axiom_content_is_judgment_raw_material",
+      "one_sentence": "Notes, documents, recordings, works, and feedback are raw material; KDNA is the refined judgment extracted from them — they are not the same thing.",
+      "full_statement": "Content systems (notes, knowledge bases, document libraries, chat history, audio transcripts, creative works) store what a person has recorded, learned, expressed, or collected. KDNA stores something different: the stable judgment patterns distilled FROM that content — the principles a person consistently applies, the boundaries they repeatedly enforce, the aesthetic standards they recognizably prefer, and the decision weights they reliably use. The agent must treat content as evidence to be analyzed, not as content to be compressed or summarized into KDNA.",
+      "why": "The most critical boundary for distillation-first authoring: confusing content with judgment produces KDNA that is essentially a compressed knowledge base, not a judgment framework. The agent must actively extract judgment patterns (what the person considers good, what they reject, where they draw boundaries) rather than summarizing what the content says.",
+      "applies_when": [
+        "User provides a corpus of their own writing, notes, decisions, or creative work and asks 'can you figure out my standards from this?'",
+        "Agent needs to decide whether an extracted pattern is a one-time observation or a stable recurring judgment",
+        "Determining which pieces of imported content qualify as evidence for a judgment claim versus which are just raw context"
+      ],
+      "does_not_apply_when": [
+        "User is actively articulating their judgment in an interview — no content corpus to distill from",
+        "The content is purely factual reference material with no embedded judgment (e.g., API documentation, address records)",
+        "The task is to build a RAG knowledge base, not a KDNA judgment framework"
+      ],
+      "failure_risk": "The agent will flatten the user's content into a summary document labeled as .kdna, producing a RAG-like asset that retrieves facts but does not change how any agent interprets ambiguous situations — a knowledge base wearing a KDNA format.",
+      "confidence": "high",
+      "evidence_type": [
+        "practice_pattern",
+        "case_observation"
+      ],
+      "status": "locked",
+      "human_lock": {
+        "by": "KDNA Team",
+        "at": "2026-05-31",
+        "statement": "New axiom for KDNA Studio 2.0 distillation-first authoring. Defines the critical boundary between content as raw material and KDNA as refined judgment output.",
+        "checked": {
+          "applies_when": true,
+          "does_not_apply_when": true,
+          "failure_risk": true
+        }
+      }
+    },
+    {
+      "id": "axiom_distillation_is_valid_authoring_path",
+      "one_sentence": "Distilling judgment from existing content is a valid KDNA authoring path, equal to but distinct from interview-first creation.",
+      "full_statement": "KDNA can be created through two paths. Interview-first: the expert actively expresses their judgment distinctions in dialogue with the agent. Distillation-first: the user provides existing content (notes, documents, works, recordings, feedback, revision history), the agent analyzes it to identify stable judgment patterns, presents them as candidates for human confirmation, and only writes confirmed patterns into KDNA. Both paths must end with Human Judgment Lock before formal .kdna export. Neither path allows the agent to auto-generate KDNA without human confirmation.",
+      "why": "Many domain experts lack the meta-cognitive vocabulary to articulate their judgment in an interview, but their judgment is already embedded in their existing body of work, decisions, feedback, and revisions. Distillation-first makes KDNA accessible to people who cannot articulate 'I prioritize X over Y' but whose 200 revisions, 50 client responses, and 30 rejected drafts clearly encode that priority. This dramatically expands the pool of potential KDNA authors.",
+      "applies_when": [
+        "User has a substantial corpus of existing content (20+ documents, revisions, or works) from which judgment patterns can be reliably extracted",
+        "User says 'I don't know how to describe my standards, but here are examples of what I accept and reject'",
+        "Agent must choose between starting with an interview or starting with content analysis — this axiom says both are valid start points"
+      ],
+      "does_not_apply_when": [
+        "User has no existing content to analyze and must start from scratch — use interview-first path",
+        "The content corpus is too small (under 5-10 items) to distinguish stable patterns from one-off decisions",
+        "User declines to share content and prefers to articulate judgment directly"
+      ],
+      "failure_risk": "The agent will treat interview-first as the only legitimate path and reject users who cannot articulate their judgment but have rich existing content that encodes it — locking out a large class of potential KDNA creators.",
+      "confidence": "high",
+      "evidence_type": [
+        "practice_pattern",
+        "case_observation"
+      ],
+      "status": "locked",
+      "human_lock": {
+        "by": "KDNA Team",
+        "at": "2026-05-31",
+        "statement": "New axiom for KDNA Studio 2.0. Establishes distillation-first as a co-equal authoring path alongside interview-first. Both paths must end with Human Judgment Lock.",
+        "checked": {
+          "applies_when": true,
+          "does_not_apply_when": true,
+          "failure_risk": true
+        }
+      }
+    },
+    {
+      "id": "axiom_ai_proposes_human_confirms_kdna",
+      "one_sentence": "AI may propose judgment candidates from content analysis — but only human-confirmed candidates become KDNA.",
+      "full_statement": "In distillation-first authoring, the AI agent analyzes source content and proposes judgment candidates: potential principles, recurring boundaries, stable aesthetic preferences, consistent decision criteria. These are candidates, not KDNA. Each candidate must be presented for human review: Is this a stable long-term judgment or a one-time preference? Is the boundary accurately stated? Is this suitable for encoding into a reusable KDNA asset? The agent must never write unconfirmed candidates into formal KDNA files. Human Judgment Lock is the gate between candidate and asset.",
+      "why": "Confidence in KDNA depends on the user knowing that every judgment in the file was explicitly confirmed. Without this boundary, distillation becomes indistinguishable from automated profiling — the agent writes what it infers about the user into a file the user is expected to trust. This erodes the core KDNA value proposition: human-governed judgment.",
+      "applies_when": [
+        "Agent has completed content analysis and generated judgment candidates ready for human review",
+        "User asks 'did you just write that about me?' — the agent must be able to point to the explicit confirmation step",
+        "Determining whether a candidate should move from draft status to locked Judgment Card"
+      ],
+      "does_not_apply_when": [
+        "Structural validation, formatting, or schema compliance checks — these are automated quality gates, not judgment authoring",
+        "The agent is suggesting interview questions or domain classifications — not writing final KDNA content",
+        "The content being processed is already published, Human-Locked KDNA from a registry source"
+      ],
+      "failure_risk": "The agent will silently encode inferences about the user's identity, preferences, or boundaries into .kdna without explicit confirmation, creating a judgment asset the user did not actually authorize — undermining the trust model that KDNA depends on.",
+      "confidence": "high",
+      "evidence_type": [
+        "practice_pattern",
+        "design_principle"
+      ],
+      "status": "locked",
+      "human_lock": {
+        "by": "KDNA Team",
+        "at": "2026-05-31",
+        "statement": "New axiom for KDNA Studio 2.0. Establishes the candidate-to-asset boundary: AI proposes, human confirms, Human Lock gates the transition. This is the trust foundation of distillation-first authoring.",
+        "checked": {
+          "applies_when": true,
+          "does_not_apply_when": true,
+          "failure_risk": true
+        }
+      }
+    },
+    {
+      "id": "axiom_source_content_is_not_kdna_content",
+      "one_sentence": "Raw source content must not be embedded into .kdna — KDNA carries confirmed judgment structures, not the material they were distilled from.",
+      "full_statement": "When distillation-first authoring processes user content (notes, documents, recordings, works), the source material serves as evidence for judgment extraction. It must not be packaged into the resulting .kdna. KDNA files carry axioms, boundaries, standards, self-checks, and patterns — confirmed judgment structures. The provenance of these structures (source type, content hash, distillation timestamp, model version) should be recorded in a separate Export Receipt, not inside the KDNA domain files themselves. This keeps .kdna lean, focused, and judgment-only, while maintaining traceability for audits.",
+      "why": "Blurring the line between source content and KDNA judgment creates three problems: (1) .kdna files balloon with redundant raw material, (2) privacy-sensitive source content leaks into potentially shareable assets, (3) agents loading the KDNA receive noise (raw content) mixed with signal (judgment structure), reducing behavioral effectiveness.",
+      "applies_when": [
+        "Determining what goes into formal KDNA files versus what stays in the provenance receipt",
+        "User asks 'will this include my actual notes?' — agent must be able to explain the extraction boundary",
+        "Privacy review: checking that no raw source content was accidentally embedded in axiom or case descriptions"
+      ],
+      "does_not_apply_when": [
+        "The user explicitly chooses to include a representative case from their own work as a KDNA_Cases.json entry — this is a deliberate judgment-level case, not raw content",
+        "Building evidence logs or audit trails that are external to the .kdna format",
+        "Processing public domain content where provenance documentation requirements differ from personal/private content"
+      ],
+      "failure_risk": "The agent will embed raw source material into .kdna files, creating bloated, privacy-leaking artifacts that blur the line between a knowledge base and a judgment framework — and exposing user content to any system that loads the .kdna.",
+      "confidence": "high",
+      "evidence_type": [
+        "design_principle",
+        "practice_pattern"
+      ],
+      "status": "locked",
+      "human_lock": {
+        "by": "KDNA Team",
+        "at": "2026-05-31",
+        "statement": "New axiom for KDNA Studio 2.0. Defines the strict boundary: source content is evidence, .kdna carries confirmed judgment. Provenance goes in Export Receipt, not in domain files.",
+        "checked": {
+          "applies_when": true,
+          "does_not_apply_when": true,
+          "failure_risk": true
+        }
+      }
+    },
+    {
+      "id": "axiom_privacy_boundary_in_distillation",
+      "one_sentence": "AI must not write sensitive personal attributes into KDNA — identity, health, politics, religion, finances, and intimate relationships are not judgment assets.",
+      "full_statement": "When distilling judgment from personal content (notes, journals, messages, health records, financial records), the agent must actively filter: a recurring preference is judgment-worthy (prefers direct communication, values early feedback); a sensitive personal attribute is not (political affiliation, health condition, religious practice, financial status, relationship details). The agent must proactively flag and block sensitive inferences. 'User tends to make conservative financial decisions' is a judgment pattern. 'User has $X in savings and worries about medical bills' is sensitive information that must not enter KDNA.",
+      "why": "KDNA is intended to be loadable by AI agents in multiple contexts. A .kdna that carries sensitive personal attributes becomes a privacy liability every time it's loaded. The distillation process must have an active privacy boundary that prevents sensitive attributes from entering the judgment asset, even if those attributes are strongly present in the source content.",
+      "applies_when": [
+        "Processing personal content such as journals, private notes, health records, financial documents, or intimate correspondence",
+        "Agent identifies a candidate judgment that could indirectly expose a sensitive attribute",
+        "User provides content from personal memory systems (e.g., diary apps, therapy notes, private message exports)"
+      ],
+      "does_not_apply_when": [
+        "Processing exclusively professional/domain content (e.g., marketing collateral, technical documentation, design specs) with no personal dimension",
+        "The user is a professional creating domain-specific KDNA from their own published work — the content is already public",
+        "The attribute is explicitly a professional standard, not a personal trait (e.g., 'prefers agile over waterfall' vs. 'is anxious about deadlines')"
+      ],
+      "failure_risk": "The agent will encode sensitive personal attributes as if they were domain judgment, creating KDNA files that expose private information to any system that loads them — a severe trust violation that would undermine KDNA adoption for personal use.",
+      "confidence": "high",
+      "evidence_type": [
+        "design_principle",
+        "practice_pattern"
+      ],
+      "status": "locked",
+      "human_lock": {
+        "by": "KDNA Team",
+        "at": "2026-05-31",
+        "statement": "New axiom for KDNA Studio 2.0. Establishes privacy boundary for distillation-first authoring. Sensitive personal attributes must not become KDNA content. This is a trust foundation for personal KDNA adoption.",
         "checked": {
           "applies_when": true,
           "does_not_apply_when": true,
@@ -234,6 +399,27 @@
       "essence": "A quality audit asks: for each axiom, can I construct a scenario where it changes the answer? For each misunderstanding, would a real agent actually hold this wrong belief? For each self-check, would a domain expert say 'yes, that's exactly what I check'?",
       "boundary": "It is not structural validation (kdna-lint, kdna-validate). Structural validation checks JSON compliance. Quality audit checks behavioral effectiveness. A domain can pass structural validation and fail quality audit.",
       "trigger_signal": "The agent has drafted KDNA files and needs to evaluate whether the content is actually useful before publishing."
+    },
+    {
+      "id": "distillation_first_authoring",
+      "one_sentence": "An authoring path where the agent analyzes a user's existing content (notes, documents, works, feedback, revision history) to identify stable judgment patterns, presents them as candidates for human confirmation, and only writes confirmed patterns into formal KDNA.",
+      "essence": "It is not summarizing content. It is extracting the judgment structures implicit in the content — the principles the person consistently applies, the boundaries they repeatedly enforce, the aesthetic standards they recognizably prefer. The output is judgment candidates requiring human confirmation, not a finished KDNA.",
+      "boundary": "It is not automated KDNA generation. It is not RAG or knowledge base construction. It is not profiling or personality inference. The AI may propose candidates; only the human may confirm them. Content is evidence; KDNA is confirmed judgment. Source material stays outside the .kdna.",
+      "trigger_signal": "User says 'I don't know how to describe my standards, but here are examples of my work' or 'can you figure out what I like from these?' or 'here are my notes — can you pull out what I actually believe?'"
+    },
+    {
+      "id": "judgment_candidate",
+      "one_sentence": "A proposed judgment element extracted from content analysis that requires explicit human confirmation before it can enter formal KDNA.",
+      "essence": "A candidate is in the intermediate state between raw content evidence and a locked KDNA axiom/boundary/standard. It says: 'Based on analysis of your content, here is a judgment pattern you may hold — do you confirm this as one of your stable judgment principles?' The candidate is structured like a KDNA element but carries candidate_status: proposed.",
+      "boundary": "It is not KDNA. It must not be written into KDNA_Core.json, KDNA_Patterns.json, or any formal domain file until confirmed. It is not a summary of content. It is a hypothesis about the user's judgment — specifically, a hypothesis that requires the user's verification.",
+      "trigger_signal": "Agent has completed content clustering and pattern analysis and is ready to present extracted patterns for human review."
+    },
+    {
+      "id": "source_evidence",
+      "one_sentence": "Content that a user provides as raw material for judgment distillation — notes, documents, recordings, works, revision histories, feedback, chat logs.",
+      "essence": "Evidence is the input to distillation, not the output. It is recorded for provenance (what was analyzed, source hash, import timestamp) but is not embedded in the resulting .kdna. Evidence is registered to support traceability: 'this judgment was distilled from these 40 documents processed on this date.'",
+      "boundary": "It is not KDNA content. It is not part of the final asset. It may contain sensitive or private information that must not leak into KDNA files. Evidence registration is for provenance, not for distribution.",
+      "trigger_signal": "User drags a folder of files or points to a content source for analysis. Agent must register the evidence before beginning distillation."
     }
   ],
   "frameworks": [
@@ -263,6 +449,23 @@
         "Stance audit: confirm each stance is prescriptive and would bias the agent toward a different answer than the opposite stance.",
         "Case audit: verify each case has a structural_pattern that extracts the reusable judgment pattern."
       ]
+    },
+    {
+      "id": "frame_distillation_pipeline",
+      "name": "Distillation-First Authoring Pipeline",
+      "when_to_use": "Use when helping a user create KDNA from existing content — notes, documents, works, feedback, revisions. The user has material but may not be able to articulate their judgment directly.",
+      "steps": [
+        "Evidence Registration: record source files, compute hashes, note privacy level, register import scope. Source content is evidence, not part of the final .kdna.",
+        "Content Clustering: analyze content to identify natural domain groupings — writing style patterns in one cluster, decision criteria in another, aesthetic preferences in a third.",
+        "Pattern Extraction: for each cluster, identify recurring judgment patterns — repeated principles, consistent boundaries, stable aesthetic standards, recurring decision criteria. Extract these as judgment candidates.",
+        "Candidate Presentation: present each candidate to the user: 'Based on your content, here is a judgment pattern we observed — do you confirm this as one of your stable judgment principles?' Include evidence trace: which items support this candidate.",
+        "Sensitive Inference Filter: before presenting candidates, check that no candidate encodes identity, health, political, religious, financial, or intimate relationship attributes. Flag and block such candidates.",
+        "Human Confirmation: user accepts, rejects, or modifies each candidate. Confirmed candidates advance to Judgment Card status.",
+        "Human Judgment Lock: user formally locks confirmed cards — 'I confirm these represent my stable judgment and authorize their entry into .kdna.'",
+        "Compile: locked Judgment Cards are compiled into standard KDNA domain files (KDNA_Core.json, KDNA_Patterns.json, etc.).",
+        "Export: generate .kdna asset with provenance receipt recording source evidence hashes, distillation timestamp, and model version — without embedding source content.",
+        "Verify: load the exported .kdna in KDNAChat to confirm behavioral effect on a real scenario."
+      ]
     }
   ],
   "core_structure": [
@@ -272,9 +475,19 @@
       "via": "contrast-seeking interview questions that surface what the expert notices that others miss"
     },
     {
+      "from": "user_has_rich_content_no_kdna",
+      "to": "judgment_candidates_identified",
+      "via": "content clustering and pattern extraction that identifies recurring principles, boundaries, standards, and preferences across the user's existing body of work"
+    },
+    {
       "from": "agent_generates_kdna_from_topic_name",
       "to": "hollow_kdna_produced",
-      "via": "skipping the interview step produces generic axioms, straw-man misunderstandings, and knowledge-dump patterns"
+      "via": "skipping both interview and distillation produces generic axioms, straw-man misunderstandings, and knowledge-dump patterns"
+    },
+    {
+      "from": "judgment_candidates_presented",
+      "to": "judgment_cards_locked",
+      "via": "user reviews, accepts, rejects, or modifies each candidate — only confirmed candidates become Judgment Cards with Human Lock"
     },
     {
       "from": "kdna_passes_structural_validation",
@@ -283,15 +496,24 @@
     },
     {
       "from": "expert_cant_write_json",
-      "to": "expert_can_describe_distinctions",
-      "via": "the agent asks specific contrast questions instead of asking the expert to fill in JSON fields"
+      "to": "expert_can_provide_content_or_distinctions",
+      "via": "the agent offers two paths: describe your judgment directly, or provide content from which judgment can be distilled — neither path requires writing JSON"
+    },
+    {
+      "from": "source_content_imported",
+      "to": "source_content_enters_kdna",
+      "via": "the agent fails to distinguish evidence from judgment and embeds raw content into .kdna — producing a bloated, privacy-leaking pseudo-RAG artifact"
     }
   ],
   "stances": [
-    "Do not generate KDNA from a topic name. Always interview first, then draft.",
+    "Do not generate KDNA from a topic name. Always interview or distill from content first, then draft.",
+    "There are two valid KDNA authoring paths: interview-first (expert expresses judgment directly) and distillation-first (judgment extracted from existing content). Both must end with Human Judgment Lock.",
+    "Content is raw material. KDNA is refined judgment. Do not confuse them — source content must not be embedded into .kdna files.",
     "A 4-axiom domain where each axiom changes behavior is better than a 20-axiom domain where none do.",
     "Every misunderstanding must describe a belief a real agent might hold — never a straw man.",
     "If the user cannot name a specific situation they judged differently from how a novice would, the domain is not ready.",
-    "Structural validation proves the JSON is correct. Behavioral testing proves the KDNA is useful. Both are required."
+    "AI may propose judgment candidates from content analysis. Only human-confirmed candidates may enter KDNA files. This boundary is absolute.",
+    "Sensitive personal attributes (identity, health, politics, religion, finances, intimate relationships) must never become KDNA content — even if strongly present in source material.",
+    "Structural validation proves the JSON is correct. Behavioral testing proves the KDNA is useful. Human Lock proves the judgment is authorized. All three are required."
   ]
 }
