@@ -29,13 +29,30 @@
 - Quality auditing and hollow KDNA detection
 - Judgment Candidate → Human Lock → .kdna workflow enforcement
 
-## This KDNA is not for
+## Scope
 
-- General knowledge base creation
-- Prompt engineering
-- Domain content that is not KDNA-structured
-- Auto-generating KDNA from content without human confirmation
-- Content summarization (RAG) in KDNA format
+This KDNA covers:
+- All KDNA domain authoring workflows (interview-first and distillation-first)
+- Quality auditing of existing KDNA domains
+- Meta-cognitive judgment about what constitutes valid, behaviorally-effective KDNA
+- The boundary between judgment, knowledge, and instruction in AI agent contexts
+
+## Out of Scope
+
+This KDNA does NOT cover:
+- Domain-specific judgment for any particular industry or profession
+- General knowledge base creation, RAG setup, or content management
+- Prompt engineering, tone/style guidance, or response formatting
+- Procedural skill documentation or workflow step definitions
+- Automated KDNA generation from content without human confirmation
+- Content summarization producing KDNA-format knowledge bases
+
+## How it is verified
+
+- 10 eval cases in `evals/` covering axiom validity, misunderstanding detection, and hollow KDNA rejection
+- 7 self-check questions verifiable as yes/no before and after domain loading
+- All 6 axioms carry explicit `applies_when`, `does_not_apply_when`, and `failure_risk`
+- All 5 misunderstandings carry explicit `applies_when` and `failure_risk`
 
 ## Core judgment
 

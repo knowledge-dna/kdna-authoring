@@ -11,15 +11,18 @@
   "media_type": "application/vnd.aikdna.kdna+zip",
   "created": "2026-05-20",
   "updated": "2026-05-29",
-  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first authoring, quality auditing, and distinction extraction.",
-  "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions extracted through interview are the only valid raw material.",
+  "description": "Meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains — through interview-first and distillation-first authoring, quality auditing, and distinction extraction.",
+  "core_insight": "KDNA encodes judgment, not information. Every axiom must change interpretation. Expert distinctions can be extracted through interview or distilled from existing content. Both paths end with Human Judgment Lock.",
   "keywords": [
     "kdna",
     "authoring",
     "meta-cognition",
     "quality",
     "interview",
-    "domain creation"
+    "distillation",
+    "domain creation",
+    "human lock",
+    "judgment extraction"
   ],
   "author": {
     "name": "KDNA Team",
@@ -32,6 +35,19 @@
   },
   "registry": {
     "repo": "https://github.com/aikdna/kdna-authoring"
+  },
+  "authoring": {
+    "created_by": "kdna-studio-cli",
+    "authoring_tool": "kdna-studio-cli v0.2.0 + kdna-studio-core v1.4.2",
+    "compiler": "kdna-studio-core",
+    "compiler_version": "1.4.2",
+    "compiled_at": "2026-05-31",
+    "human_confirmed": true,
+    "human_lock_count": 6,
+    "build_id": "build_20260531_kdna_authoring_v0.7.7",
+    "asset_uid": "kdna_authoring_0.7.7",
+    "project_uid": "studio_kdna_authoring_main",
+    "domain_id": "kdna_authoring"
   },
   "file_count": 6,
   "judgment_version": "2026.05",
