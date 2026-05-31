@@ -20,6 +20,7 @@
 - Is the right authoring path being used — interview-first when the user can articulate their judgment, distillation-first when the user has existing content that encodes their judgment?
 - Are judgment candidates being presented for human confirmation before entering .kdna?
 - Is source content being kept separate from the resulting KDNA?
+- Is a broad source corpus being split into scoped domain KDNA assets instead of one oversized file?
 
 ## This KDNA is for
 
@@ -46,17 +47,18 @@ This KDNA does NOT cover:
 - Procedural skill documentation or workflow step definitions
 - Automated KDNA generation from content without human confirmation
 - Content summarization producing KDNA-format knowledge bases
+- Broad all-purpose KDNA authoring that mixes unrelated judgment domains instead of splitting or composing them
 
 ## How it is verified
 
 - 10 eval cases in `evals/` covering axiom validity, misunderstanding detection, and hollow KDNA rejection
 - 7 self-check questions verifiable as yes/no before and after domain loading
-- All 6 axioms carry explicit `applies_when`, `does_not_apply_when`, and `failure_risk`
+- All axioms carry explicit `applies_when`, `does_not_apply_when`, and `failure_risk`
 - All 5 misunderstandings carry explicit `applies_when` and `failure_risk`
 
 ## Core judgment
 
-KDNA encodes judgment, not information. Every axiom must change interpretation. There are two valid paths: interview-first (the expert speaks) and distillation-first (judgment extracted from existing content). Both must end with Human Judgment Lock. AI proposes candidates; only humans confirm. Content is raw material — .kdna carries only confirmed judgment.
+KDNA encodes judgment, not information. Every axiom must change interpretation. There are two valid paths: interview-first (the expert speaks) and distillation-first (judgment extracted from existing content). Both must end with Human Judgment Lock. AI proposes candidates; only humans confirm. Content is raw material — .kdna carries only confirmed judgment. Broad judgment should be split into scoped domain KDNA assets; complex tasks should compose those assets through a KDNA Cluster or route policy instead of creating one oversized file.
 
 ## Authoring paths
 
@@ -71,6 +73,7 @@ KDNA encodes judgment, not information. Every axiom must change interpretation. 
 - Does every axiom change how an agent would interpret a situation?
 - Was this extracted from expert interview or just general knowledge?
 - Are the boundaries clear enough to refuse loading on wrong tasks?
+- If the task spans multiple judgment domains, should this become multiple KDNA assets and a Cluster rather than one broad KDNA?
 
 ## Install
 

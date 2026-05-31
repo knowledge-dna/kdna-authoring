@@ -369,6 +369,39 @@
           "failure_risk": true
         }
       }
+    },
+    {
+      "id": "axiom_split_broad_judgment_into_scoped_domains",
+      "one_sentence": "Do not solve broad judgment by making one all-purpose KDNA; split into scoped domain assets and compose them when needed.",
+      "full_statement": "When the user's material contains multiple judgment dimensions — writing style, visual taste, professional standards, decision preferences, workflow rules, life preferences, or team norms — the agent must not collapse them into one broad 'my KDNA' file. First identify the target domain, owner scope, task scope, granularity, and load condition. If multiple stable judgment domains are present, propose separate domain-scoped KDNA assets and, for complex work, a KDNA Cluster or route policy that composes them without merging their boundaries.",
+      "why": "Distillation-first authoring can easily produce a mixed-scope artifact: one file containing unrelated preferences and standards from many parts of a person's life or work. This breaks load precision, creates domain contamination, wastes context, and makes review difficult. KDNA quality depends on bounded domains; composition should happen above domains through clusters, not inside one oversized asset.",
+      "applies_when": [
+        "User imports a mixed corpus containing notes, creative work, decisions, personal records, team documents, and professional feedback",
+        "A candidate judgment appears valid but belongs to a different domain than the declared KDNA target",
+        "A task genuinely needs multiple judgment domains such as writing, brand, risk, review, and workflow standards"
+      ],
+      "does_not_apply_when": [
+        "The imported evidence is already narrowly scoped to one target domain and one loading condition",
+        "The user is intentionally creating a first small prototype domain with clearly declared temporary boundaries",
+        "A domain contains multiple files within the six-file KDNA standard but still represents one coherent judgment scope"
+      ],
+      "failure_risk": "The agent will create a broad mixed-scope KDNA that combines unrelated judgment domains, causing irrelevant loading, contradictory standards, privacy leakage, and weak behavioral validation.",
+      "confidence": "high",
+      "evidence_type": [
+        "design_principle",
+        "practice_pattern"
+      ],
+      "status": "locked",
+      "human_lock": {
+        "by": "KDNA Team",
+        "at": "2026-05-31",
+        "statement": "New axiom for domain-scoped authoring. Prevents distillation-first workflows from collapsing multiple judgment domains into one broad KDNA. Complex work should compose scoped assets through clusters or route policy.",
+        "checked": {
+          "applies_when": true,
+          "does_not_apply_when": true,
+          "failure_risk": true
+        }
+      }
     }
   ],
   "ontology": [

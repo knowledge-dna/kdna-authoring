@@ -89,6 +89,11 @@
         "term": "build your KDNA from this",
         "why": "Ambiguous: could mean 'analyze this and present candidates for your approval' (valid) or 'process this and produce a finished .kdna' (invalid). The phrase masks whether human confirmation is part of the pipeline. Must be explicit about the confirmation step.",
         "replace_with": "analyze this content to identify judgment patterns, then let's review the candidates together before anything enters .kdna"
+      },
+      {
+        "term": "one all-purpose KDNA",
+        "why": "It suggests that a person, team, or complex workstream should be represented by one broad judgment file. This causes domain contamination: unrelated writing, aesthetic, professional, decision, workflow, and life preferences are mixed into one asset and then loaded in the wrong contexts.",
+        "replace_with": "create scoped domain KDNA assets first; if the task spans multiple judgment domains, compose them with a KDNA Cluster or route policy"
       }
     ]
   },
@@ -288,6 +293,7 @@
     "Did I avoid generating content from the topic name alone — is there genuine expert input (interview) or content corpus (distillation) behind each axiom?",
     "For distillation-first: did I clearly separate Evidence (source content), Candidate (AI-proposed judgment), and Judgment Card (human-confirmed) and ensure that only locked Cards entered the .kdna?",
     "For distillation-first: did I filter out sensitive personal attributes — identity, health, politics, religion, finances, intimate relationships — before presenting candidates?",
-    "For distillation-first: did I verify that no raw source content was embedded in the .kdna domain files, and that provenance was recorded in a separate receipt?"
+    "For distillation-first: did I verify that no raw source content was embedded in the .kdna domain files, and that provenance was recorded in a separate receipt?",
+    "If the source material contains multiple judgment domains, did I split them into scoped KDNA assets or propose a KDNA Cluster instead of creating one broad file?"
   ]
 }
