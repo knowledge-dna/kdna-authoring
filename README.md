@@ -2,7 +2,7 @@
 
 # @aikdna/kdna_authoring
 
-[![KDNA Spec](https://img.shields.io/badge/KDNA-v1.0--rc-4c1)](https://github.com/aikdna/KDNA)
+[![KDNA Spec](https://img.shields.io/badge/KDNA-v1.0--rc-4c1)](https://github.com/aikdna/kdna)
 
 **KDNA authoring judgment** — meta-cognition domain for helping AI agents turn human expertise into valid, high-quality KDNA domains.
 
@@ -75,12 +75,30 @@ KDNA encodes judgment, not information. Every axiom must change interpretation. 
 - Are the boundaries clear enough to refuse loading on wrong tasks?
 - If the task spans multiple judgment domains, should this become multiple KDNA assets and a Cluster rather than one broad KDNA?
 
+## Example: without KDNA / with KDNA
+
+```
+User: "Help me create a KDNA domain for my team's code review standards."
+
+Without KDNA:
+  → Agent collects information: "What are your standards? What do you look for?"
+  → Produces axioms like: "Review code thoroughly" and "Catch bugs early."
+  → Result: Hollow KDNA — valid structure, zero behavioral change.
+
+With @aikdna/kdna_authoring:
+  → Classifies as distillation-first: user likely has existing review practices encoded in past PR comments.
+  → Asks: "Can you share a few recent PRs where you felt the review was particularly good or particularly weak?"
+  → Extracts patterns: team tends to rubber-stamp when time pressure is high, accepts cosmetic suggestions as meaningful review.
+  → Proposes candidate axiom: "Every review comment that requests a change must cite a specific failure mode."
+  → Asks user to confirm: applies_when, does_not_apply_when, failure_risk.
+  → Self-checks: Encodes judgment, not information. Axiom changes interpretation. Human Lock confirmed.
+```
+
 ## Install
 
 ```bash
 kdna install @aikdna/kdna_authoring
-kdna dev validate .
-```
+kdna verify @aikdna/kdna_authoring --judgment
 
 ## Files
 
